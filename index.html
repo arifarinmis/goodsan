@@ -1,0 +1,2347 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GOODSAN | Ar-Ge, Hibe ve Teşvik Danışmanlığı</title>
+  <meta name="description" content="GOODSAN Ar-Ge Danışmanlık: TÜBİTAK, KOSGEB, uluslararası programlar, yatırım teşvikleri ve ihracat desteklerinde uçtan uca kurumsal danışmanlık." />
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lenis Smooth Scroll (iOS benzeri yumuşak ataletli kaydırma) -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          colors: {
+            brand: {
+              slate: '#2B3D4F',
+              navy: '#1E293B',
+              dark: '#0F172A',
+              blue: '#2563EB',
+              blueHover: '#1D4ED8',
+              soft: '#EFF6FF',
+              bg: '#F8FAFC',
+              border: '#E2E8F0',
+              muted: '#64748B',
+            }
+          },
+          boxShadow: {
+            'card': '0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04)',
+            'card-hover': '0 12px 24px -8px rgba(15, 23, 42, 0.08), 0 4px 8px -4px rgba(15, 23, 42, 0.04)',
+            'dropdown': '0 20px 35px -10px rgba(15, 23, 42, 0.12), 0 4px 12px -4px rgba(15, 23, 42, 0.06)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Lenis yumuşak kaydırma temel kuralları */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    /* Üst header bar: Photoshop Multiply benzeri şeffaf koyu katman */
+    .header-multiply-bar {
+      background: linear-gradient(180deg, rgba(10, 28, 46, 0.46) 0%, rgba(16, 36, 56, 0.32) 100%);
+      backdrop-filter: brightness(0.62) contrast(1.18) saturate(1.15);
+      -webkit-backdrop-filter: brightness(0.62) contrast(1.18) saturate(1.15);
+    }
+
+    /* Kurumsal tipografi ve temel düzen */
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-editorial {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* Hero ince mühendislik ızgara dokusu */
+    .hero-grid-bg {
+      background-image:
+        linear-gradient(to right, rgba(43, 61, 79, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(43, 61, 79, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Yumuşak kaydırma animasyonu */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Durdurulabilir logo şeridi (Marquee) */
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 32s linear infinite;
+    }
+    .marquee-track.paused {
+      animation-play-state: paused;
+    }
+    .marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    /* Dropdown menü yumuşak geçişi */
+    .nav-dropdown {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-group:hover .nav-dropdown,
+    .nav-group:focus-within .nav-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Akordeon yumuşak açılış */
+    .accordion-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.28s ease;
+    }
+    .accordion-item.open .accordion-content {
+      grid-template-rows: 1fr;
+    }
+    .accordion-inner {
+      overflow: hidden;
+    }
+    .accordion-item.open .accordion-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Sayfa geçiş efekti */
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .page-animate {
+      animation: pageFadeIn 0.3s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-white text-brand-dark selection:bg-brand-soft selection:text-brand-blue">
+
+  <!-- =========================================================
+       STICKY ÜST MENÜ (HEADER)
+  ========================================================== -->
+  <header id="site-header" class="fixed top-0 left-0 right-0 z-50 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
+    <div id="header-shell" class="pointer-events-auto mx-auto w-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
+      <div id="header-inner" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500">
+        <div id="header-row" class="flex items-center justify-between h-24 transition-all duration-500">
+        <!-- Sol: GOODSAN Logo -->
+        <a href="#anasayfa" onclick="navigateTo('anasayfa'); return false;" class="flex items-center gap-3 group focus:outline-none" aria-label="GOODSAN Anasayfa">
+          <div id="navbar-logo-container"></div>
+        </a>
+
+        <!-- Orta: Masaüstü Menü -->
+        <nav class="hidden lg:flex items-center gap-2" aria-label="Ana Menü">
+          <a href="#anasayfa" onclick="navigateTo('anasayfa'); return false;" data-nav="anasayfa"
+             class="nav-link px-4 py-2.5 rounded-lg text-base font-semibold tracking-[0.01em] transition-colors">
+            Anasayfa
+          </a>
+
+          <!-- Hizmetlerimiz Dropdown -->
+          <div class="relative nav-group">
+            <button type="button" onclick="navigateTo('hizmetlerimiz')" data-nav="hizmetlerimiz"
+                    class="nav-link flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-base font-semibold tracking-[0.01em] transition-colors">
+              Hizmetlerimiz
+              <svg class="nav-chevron w-4 h-4 opacity-85 transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 top-full pt-2 w-80 z-50">
+              <div class="bg-white rounded-2xl shadow-dropdown border border-brand-border p-2.5">
+                <a href="#hizmetlerimiz" onclick="navigateTo('hizmetlerimiz'); return false;"
+                   class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-brand-bg hover:bg-brand-soft text-xs font-semibold text-brand-slate hover:text-brand-blue transition-colors mb-1.5">
+                  <span>Tüm Hizmetlerimiz (7 Alan)</span>
+                  <span>&rarr;</span>
+                </a>
+                <div class="space-y-0.5" id="desktop-services-dropdown"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hakkımızda Dropdown -->
+          <div class="relative nav-group">
+            <button type="button" onclick="navigateTo('hakkimizda')" data-nav="hakkimizda"
+                    class="nav-link flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-base font-semibold tracking-[0.01em] transition-colors">
+              Hakkımızda
+              <svg class="nav-chevron w-4 h-4 opacity-85 transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 top-full pt-2 w-60 z-50">
+              <div class="bg-white rounded-2xl shadow-dropdown border border-brand-border p-2 space-y-0.5">
+                <a href="#hakkimizda" onclick="navigateTo('hakkimizda', 'biz-kimiz'); return false;" class="block px-3.5 py-2.5 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">Biz Kimiz?</a>
+                <a href="#hakkimizda" onclick="navigateTo('hakkimizda', 'kurucu'); return false;" class="block px-3.5 py-2.5 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">Kurucu — Sara Gemalmaz</a>
+                <a href="#hakkimizda" onclick="navigateTo('hakkimizda', 'referanslar'); return false;" class="block px-3.5 py-2.5 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">Referanslarımız</a>
+                <a href="#hakkimizda" onclick="navigateTo('hakkimizda', 'is-birlikleri'); return false;" class="block px-3.5 py-2.5 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">İş Birliklerimiz</a>
+                <a href="#hizmetlerimiz" onclick="navigateTo('hizmetlerimiz', 'cozum-ortaklari'); return false;" class="block px-3.5 py-2.5 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">Çözüm Ortaklarımız</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aktiviteler Dropdown -->
+          <div class="relative nav-group">
+            <button type="button" onclick="navigateToActivities('Tümü')" data-nav="aktiviteler"
+                    class="nav-link flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-base font-semibold tracking-[0.01em] transition-colors">
+              Aktiviteler
+              <svg class="nav-chevron w-4 h-4 opacity-85 transition-transform duration-200 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="nav-dropdown absolute left-0 top-full pt-2 w-56 z-50">
+              <div class="bg-white rounded-2xl shadow-dropdown border border-brand-border p-2 space-y-0.5">
+                <a href="#aktiviteler" onclick="navigateToActivities('Etkinlik'); return false;" class="block px-3.5 py-2.5 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">Etkinlikler</a>
+                <a href="#aktiviteler" onclick="navigateToActivities('Eğitim'); return false;" class="block px-3.5 py-2.5 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">Eğitimler</a>
+                <a href="#aktiviteler" onclick="navigateToActivities('Duyuru'); return false;" class="block px-3.5 py-2.5 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">Duyurular</a>
+                <a href="#aktiviteler" onclick="navigateToActivities('Bilgi notu'); return false;" class="block px-3.5 py-2.5 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">Bilgi Notları</a>
+                <a href="#aktiviteler" onclick="navigateToActivities('Blog yazısı'); return false;" class="block px-3.5 py-2.5 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">Blog Yazıları</a>
+              </div>
+            </div>
+          </div>
+          <a href="#iletisim" onclick="navigateTo('iletisim'); return false;" data-nav="iletisim"
+             class="nav-link px-4 py-2.5 rounded-lg text-base font-semibold tracking-[0.01em] transition-colors">
+            İletişim
+          </a>
+        </nav>
+
+        <!-- Sağ: CTA Butonu & Mobil Menü Tetikleyici -->
+        <div class="flex items-center gap-3">
+          <button type="button" id="header-cta-btn" onclick="navigateTo('iletisim')"
+                  class="hidden sm:inline-flex items-center gap-2.5 px-5 py-2.5 rounded-lg border border-white/35 bg-white/10 hover:bg-white hover:text-[#12263A] text-white text-[15px] font-semibold backdrop-blur-sm transition-all duration-200">
+            <span>İletişime Geç</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </button>
+
+          <!-- Mobil Hamburger Butonu -->
+          <button type="button" id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menüyü Aç"
+                  class="lg:hidden p-2.5 rounded-xl border border-brand-border text-brand-slate hover:bg-brand-bg transition-colors">
+            <svg id="hamburger-icon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="close-icon" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        </div>
+      </div>
+
+      <!-- Mobil Menü Paneli -->
+      <div id="mobile-menu" data-lenis-prevent class="hidden lg:hidden bg-white border-t border-brand-border shadow-lg">
+        <div class="px-4 pt-3 pb-6 space-y-1 max-h-[80vh] overflow-y-auto">
+          <a href="#anasayfa" onclick="navigateTo('anasayfa'); closeMobileMenu(); return false;" class="block px-4 py-3 rounded-xl text-base font-semibold text-brand-dark hover:bg-brand-bg">Anasayfa</a>
+          <div class="pt-1">
+            <a href="#hizmetlerimiz" onclick="navigateTo('hizmetlerimiz'); closeMobileMenu(); return false;" class="block px-4 py-2.5 rounded-xl text-base font-semibold text-brand-dark hover:bg-brand-bg">Hizmetlerimiz</a>
+            <div class="pl-5 pr-2 py-1 space-y-1 border-l-2 border-brand-border ml-4" id="mobile-services-links"></div>
+          </div>
+          <a href="#hakkimizda" onclick="navigateTo('hakkimizda'); closeMobileMenu(); return false;" class="block px-4 py-3 rounded-xl text-base font-semibold text-brand-dark hover:bg-brand-bg">Hakkımızda</a>
+          <div class="pt-1">
+            <a href="#aktiviteler" onclick="navigateToActivities('Tümü'); closeMobileMenu(); return false;" class="block px-4 py-2.5 rounded-xl text-base font-semibold text-brand-dark hover:bg-brand-bg">Aktiviteler</a>
+            <div class="pl-5 pr-2 py-1 space-y-1 border-l-2 border-brand-border ml-4">
+              <a href="#aktiviteler" onclick="navigateToActivities('Etkinlik'); closeMobileMenu(); return false;" class="block px-3 py-2 rounded-lg text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg">Etkinlikler</a>
+              <a href="#aktiviteler" onclick="navigateToActivities('Eğitim'); closeMobileMenu(); return false;" class="block px-3 py-2 rounded-lg text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg">Eğitimler</a>
+              <a href="#aktiviteler" onclick="navigateToActivities('Duyuru'); closeMobileMenu(); return false;" class="block px-3 py-2 rounded-lg text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg">Duyurular</a>
+              <a href="#aktiviteler" onclick="navigateToActivities('Bilgi notu'); closeMobileMenu(); return false;" class="block px-3 py-2 rounded-lg text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg">Bilgi Notları</a>
+              <a href="#aktiviteler" onclick="navigateToActivities('Blog yazısı'); closeMobileMenu(); return false;" class="block px-3 py-2 rounded-lg text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg">Blog Yazıları</a>
+            </div>
+          </div>
+          <a href="#iletisim" onclick="navigateTo('iletisim'); closeMobileMenu(); return false;" class="block px-4 py-3 rounded-xl text-base font-semibold text-brand-dark hover:bg-brand-bg">İletişim</a>
+          <div class="pt-3 px-2">
+            <button type="button" onclick="navigateTo('iletisim'); closeMobileMenu();"
+                    class="w-full py-3 px-5 rounded-xl bg-brand-blue hover:bg-brand-blueHover text-white font-semibold text-center shadow-sm">
+              Ücretsiz Ön Analiz
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       ANA İÇERİK ALANI (SPA VIEWPORT)
+  ========================================================== -->
+  <main id="app-root" class="flex-1"></main>
+
+  <!-- =========================================================
+       KURUMSAL FOOTER (KOYU SLATE #1E293B)
+  ========================================================== -->
+  <footer class="bg-brand-navy text-slate-300 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+        <!-- Marka Bilgisi -->
+        <div class="lg:col-span-4 space-y-5">
+          <a href="#anasayfa" onclick="navigateTo('anasayfa'); return false;" class="inline-block">
+            <div id="footer-logo-container"></div>
+          </a>
+          <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
+            Ankara merkezli Ar-Ge, hibe ve teşvik danışmanlığı: TÜBİTAK, KOSGEB, uluslararası programlar ve yatırım teşviklerinde uçtan uca stratejik çözüm ortağınız.
+          </p>
+          <div class="flex items-center gap-3 pt-1">
+            <a href="https://wa.me/905546597684" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-white transition-colors">
+              <span>WhatsApp Hattı</span>
+            </a>
+            <a href="mailto:sara@goodsanarge.com"
+               class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-white transition-colors">
+              <span>E-posta Gönder</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hizmetler Kolonu -->
+        <div class="lg:col-span-3">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Hizmetler</h3>
+          <ul class="space-y-2.5 text-sm" id="footer-services-list"></ul>
+        </div>
+
+        <!-- Kurumsal Kolonu -->
+        <div class="lg:col-span-2">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Kurumsal</h3>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#hakkimizda" onclick="navigateTo('hakkimizda'); return false;" class="hover:text-white transition-colors">Hakkımızda</a></li>
+            <li><a href="#hakkimizda" onclick="navigateTo('hakkimizda', 'referanslar'); return false;" class="hover:text-white transition-colors">Referanslar</a></li>
+            <li><a href="#aktiviteler" onclick="navigateTo('aktiviteler'); return false;" class="hover:text-white transition-colors">Aktiviteler</a></li>
+            <li><a href="#iletisim" onclick="navigateTo('iletisim'); return false;" class="hover:text-white transition-colors">İletişim</a></li>
+          </ul>
+        </div>
+
+        <!-- İletişim Kolonu -->
+        <div class="lg:col-span-3">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white mb-4">İletişim</h3>
+          <ul class="space-y-3 text-sm text-slate-400">
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-brand-blue shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>Beştepe Mah. Nergiz Sok. No: 7/2 İç Kapı: 32, Söğütözü, 06560 Yenimahalle / Ankara</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-blue shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              <a href="tel:+905546597684" class="hover:text-white transition-colors">+90 554 659 76 84</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-blue shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <a href="mailto:sara@goodsanarge.com" class="hover:text-white transition-colors">sara@goodsanarge.com</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-blue shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+              <a href="https://www.goodsanarge.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">www.goodsanarge.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Alt Telif ve Yasal Linkler -->
+      <div class="mt-14 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <p>© 2026 GOODSAN Ar-Ge Danışmanlık. Tüm hakları saklıdır.</p>
+        <div class="flex items-center gap-6">
+          <button type="button" onclick="openLegalModal('kvkk')" class="hover:text-white transition-colors">KVKK Aydınlatma Metni</button>
+          <button type="button" onclick="openLegalModal('cerez')" class="hover:text-white transition-colors">Çerez Politikası</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       EVRENSEL MODAL (AKTİVİTE DETAYI / KVKK / ÇEREZ)
+  ========================================================== -->
+  <div id="global-modal" data-lenis-prevent class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-brand-dark/60 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-brand-border overflow-hidden">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-brand-border bg-brand-bg">
+        <h3 id="modal-title" class="text-lg font-bold text-brand-dark">Başlık</h3>
+        <button type="button" onclick="closeModal()" class="p-2 rounded-lg text-brand-muted hover:text-brand-dark hover:bg-white transition-colors" aria-label="Kapat">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div id="modal-body" class="p-6 overflow-y-auto text-sm text-slate-600 leading-relaxed space-y-4"></div>
+      <div id="modal-footer" class="px-6 py-4 border-t border-brand-border bg-brand-bg flex items-center justify-end gap-3">
+        <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl border border-brand-border bg-white text-sm font-medium text-brand-slate hover:bg-slate-50">Kapat</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       TOAST BİLDİRİMİ (ALERT YERİNE)
+  ========================================================== -->
+  <div id="toast-notification" class="fixed bottom-6 right-6 z-[110] hidden items-center gap-3 px-5 py-3.5 rounded-xl bg-brand-dark text-white text-sm font-medium shadow-xl border border-slate-700">
+    <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
+    <span id="toast-message">İşlem tamamlandı.</span>
+  </div>
+
+  <!-- =========================================================
+       UYGULAMA VERİLERİ VE SPA MOTORU
+  ========================================================== -->
+  <script>
+    /* -----------------------------------------------------------
+       1. GOODSAN KURUMSAL LOGO (ANA & FOOTER ZIT RENKLİ VERSİYON)
+    ------------------------------------------------------------ */
+    const GOODSAN_LOGO_MAIN = 'data:image/png;base64,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';
+    const GOODSAN_LOGO_ZIT = 'data:image/png;base64,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';
+
+    function getGoodsanLogo(variant = 'dark', placement = 'navbar') {
+      const isLight = variant === 'light';
+      const src = isLight ? GOODSAN_LOGO_ZIT : GOODSAN_LOGO_MAIN;
+      let classes = 'h-[92px] w-auto -ml-3 block object-contain select-none transition-all duration-300';
+      if (placement === 'footer') {
+        classes = 'h-24 w-auto -ml-3 block object-contain select-none';
+      } else if (placement === 'floating') {
+        classes = 'h-[72px] w-auto -ml-2 block object-contain select-none transition-all duration-300';
+      }
+      return `<img src="${src}" alt="GOODSAN" class="${classes}" />`;
+    }
+
+    /* -----------------------------------------------------------
+       2. AKTİF ÇAĞRILAR VERİSİ (HERO WIDGET)
+    ------------------------------------------------------------ */
+    const activeCalls = [
+      {
+        id: 'tubitak-1832',
+        shortTitle: 'TÜBİTAK 1832',
+        badge: 'Yeşil Dönüşüm',
+        daysLeft: 'Aktif Çağrı',
+        title: 'TÜBİTAK 1832 — Sanayide Yeşil Dönüşüm Çağrısı',
+        eligibility: 'KOBİ ve Büyük Ölçekli Sanayi Kuruluşları • %60 - %75 Destek',
+        deadline: 'Sürekli / Dönemsel Çağrı',
+        serviceSlug: 'tubitak',
+        summary: 'Sanayi kuruluşlarının yeşil dönüşüm, karbon ayak izi azaltımı ve enerji verimliliği odaklı Ar-Ge projelerine yönelik yüksek oranlı destek programı.'
+      },
+      {
+        id: 'kosgeb-yesil',
+        shortTitle: 'KOSGEB Yeşil Sanayi',
+        badge: '21 gün kaldı',
+        daysLeft: '21 gün kaldı',
+        title: 'KOSGEB Yeşil Sanayi Destek Programı',
+        eligibility: 'İmalat Sanayi KOBİ\'leri • 14 Milyon TL\'ye Kadar Destek',
+        deadline: '15.12.2026',
+        serviceSlug: 'kosgeb',
+        summary: 'KOBİ\'lerin güneş enerjisi yatırımları, temiz üretim ve enerji verimliliği dönüşüm projelerini kapsayan uzun vadeli faizsiz destek.'
+      },
+      {
+        id: 'kalkinma-ajansi',
+        shortTitle: 'Kalkınma Ajansı',
+        badge: '45 gün kaldı',
+        daysLeft: '45 gün kaldı',
+        title: 'Kalkınma Ajansı Mali Destek Programı',
+        eligibility: 'Bölgesel Üreticiler & Teknoloji Firmaları • %50 - %75 Hibe',
+        deadline: '08.01.2027',
+        serviceSlug: 'yatirim-bolgesel',
+        summary: 'Bölgesel kalkınmayı hızlandıran makine-teçhizat, dijitalleşme ve katma değerli üretim altyapısı projelerine yönelik hibe çağrısı.'
+      }
+    ];
+
+    /* -----------------------------------------------------------
+       3. 7 ANA HİZMET VERİSİ (GENEL & DETAY SAYFALARI)
+    ------------------------------------------------------------ */
+    const servicesData = [
+      {
+        slug: 'tubitak',
+        num: '01',
+        name: 'TÜBİTAK',
+        image: 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=1000',
+        accent: 'bg-blue-600/90 text-white',
+        shortDesc: 'TEYDEB, yeşil dönüşüm ve ARDEB programlarıyla Ar-Ge ve yenilik projeleri.',
+        fullDesc: 'Yeni ürün, süreç ve teknoloji geliştiren sanayi kuruluşları, KOBİ\'ler ve girişimler için TEYDEB Ar-Ge destekleri; sanayide yeşil dönüşüm çağrıları ve ARDEB araştırma programları. Doğru programı seçmekten proje yazımına, raporlamadan sonuçlandırmaya kadar süreci birlikte yürütüyoruz.',
+        tags: ['TEYDEB 1501-1707', 'Yeşil Dönüşüm 1831-1833', 'ARDEB 1005'],
+        benefits: { rate: '%60 – %75', limit: 'Proje Bazlı (Üst Limitsiz / Çağrı Bazlı)', duration: '12 – 36 Ay', who: 'KOBİ, Büyük Ölçekli, Girişim', period: 'Sürekli / Çağrı Bazlı' },
+        criteria: [
+          'Türkiye\'de yerleşik sermaye şirketi (A.Ş. veya Ltd. Şti.) olmak',
+          'Yeni ürün, süreç geliştirme veya mevcut üründe teknolojik iyileştirme hedeflemek',
+          'Proje ekibinde Ar-Ge ve mühendislik yetkinliğine sahip personel bulundurmak',
+          'Proje bütçesini ve nakit akışını karşılayabilecek mali yapıya sahip olmak'
+        ],
+        programGroups: [
+          {
+            groupName: 'TEYDEB Programları',
+            items: [
+              { code: '1501', name: 'Sanayi Ar-Ge Projeleri Destek Programı', desc: 'Sanayi kuruluşlarının yeni ürün, süreç ve teknoloji geliştirme projeleri.', rate: '%75 Hibe' },
+              { code: '1505', name: 'Üniversite-Sanayi İş Birliği Destek Programı', desc: 'Üniversite ve araştırma kurumlarıyla ortak yürütülen sanayi Ar-Ge projeleri.', rate: '%75 Hibe' },
+              { code: '1507', name: 'KOBİ Başlangıç Ar-Ge Projeleri Destek Programı', desc: 'KOBİ\'lerin ilk Ar-Ge projeleri için başlangıç desteği.', rate: '%75 Hibe' },
+              { code: '1511', name: 'TEKNOHAMLE (Teknoloji Odaklı Sanayi Hamlesi)', desc: 'Öncelikli teknoloji alanlarında Teknoloji Odaklı Sanayi Hamlesi çağrıları.', rate: '%60-%75' },
+              { code: '1515', name: 'Öncül Ar-Ge Laboratuvarları Destekleme Programı', desc: 'Öncül Ar-Ge laboratuvarlarının kurulması ve geliştirilmesi.', rate: '%75 Hibe' },
+              { code: '1602', name: 'Patent Destek Programı', desc: 'Yurt içi ve yurt dışı patent başvuru süreçleri.', rate: 'Çağrı Bazlı' },
+              { code: '1707', name: 'Siparişe Dayalı Ar-Ge Projeleri İçin KOBİ Desteği', desc: 'Müşteri siparişine dayalı KOBİ Ar-Ge projeleri.', rate: '%75 Hibe' }
+            ]
+          },
+          {
+            groupName: 'Yeşil Dönüşüm Çağrıları',
+            items: [
+              { code: '1831', name: 'Yeşil İnovasyon Teknoloji Mentörlük Çağrısı', desc: 'Yeşil inovasyon ve teknoloji projeleri için mentörlük çağrısı.', rate: '%90 Hibe' },
+              { code: '1832', name: 'Sanayide Yeşil Dönüşüm Programı', desc: 'Sanayi kuruluşlarının yeşil dönüşüm ve enerji verimliliği Ar-Ge projeleri.', rate: '%70-%80' },
+              { code: '1833', name: 'SAYEM Yeşil Dönüşüm Çağrısı', desc: 'Sanayi Ar-Ge ve yenilik merkezleri (SAYEM) kapsamında yeşil dönüşüm çağrısı.', rate: 'Konsorsiyum' }
+            ]
+          },
+          {
+            groupName: 'ARDEB Programları',
+            items: [
+              { code: '1005', name: 'Ulusal Yeni Fikirler ve Ürünler Araştırma Destek Programı', desc: 'Yeni fikir ve ürünlere yönelik uygulamalı araştırma projeleri (ARDEB).', rate: '%100 Destek' }
+            ]
+          }
+        ]
+      },
+      {
+        slug: 'uluslararasi',
+        num: '02',
+        name: 'Uluslararası Programlar',
+        image: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1000',
+        accent: 'bg-indigo-600/90 text-white',
+        shortDesc: '1509, Ufuk Avrupa ve EUREKA-Eurostars ile uluslararası ortaklı Ar-Ge.',
+        fullDesc: 'Yurt dışı ortaklarla yürütülen Ar-Ge projeleri için TÜBİTAK 1509, Ufuk Avrupa (Horizon Europe) ve EUREKA-Eurostars çağrıları; konsorsiyum ortaklık kurgusundan başvuru ve raporlamaya kadar uçtan uca destek.',
+        tags: ['1509', 'Ufuk Avrupa', '1709 EUREKA-Eurostars', '1719 Eureka Network'],
+        benefits: { rate: '%60 – %100', limit: 'Euro Bazlı Uluslararası Fon', duration: '24 – 36 Ay', who: 'KOBİ, Büyük Ölçekli, Araştırma Kurumları', period: 'Çağrı Bazlı' },
+        criteria: [
+          'En az bir yurt dışı proje ortağı ile konsorsiyum kurabilme potansiyeli',
+          'Uluslararası pazarda rekabet gücü yüksek yenilikçi teknoloji geliştirme',
+          'İngilizce proje yazım ve teknik raporlama süreçlerine uyum',
+          'Ticarileşme ve fikri mülkiyet (IPR) stratejisi oluşturabilme'
+        ],
+        programGroups: [
+          {
+            groupName: 'Uluslararası Ar-Ge Programları',
+            items: [
+              { code: '1509', name: 'TÜBİTAK Uluslararası Sanayi Ar-Ge Projeleri', desc: 'EUREKA, Eurostars ve ikili iş birliği kapsamındaki uluslararası ortaklı Ar-Ge projeleri.', rate: '%60-%75' },
+              { code: 'Horizon', name: 'Ufuk Avrupa (Horizon Europe)', desc: 'Avrupa Birliği\'nin en büyük araştırma ve inovasyon çerçeve programı.', rate: '%70-%100' },
+              { code: '1709', name: 'EUREKA-Eurostars Çağrıları', desc: 'Ar-Ge yapan yenilikçi KOBİ\'lerin pazara yakın uluslararası ortaklı projeleri.', rate: '%75 Hibe' },
+              { code: '1719', name: 'Eureka Network Projeleri', desc: 'Esnek konsorsiyum yapısıyla uluslararası ticarileşme odaklı Ar-Ge projeleri.', rate: '%60-%75' }
+            ]
+          }
+        ]
+      },
+      {
+        slug: 'kosgeb',
+        num: '03',
+        name: 'KOSGEB',
+        image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1000',
+        accent: 'bg-emerald-600/90 text-white',
+        shortDesc: 'Girişimcilik, yeşil sanayi, teknolojik ürün yatırımı ve stratejik ürün destekleri.',
+        fullDesc: 'KOBİ\'ler ve girişimciler için girişimcilik, yeşil sanayi, teknolojik ürün yatırımı (TEKNOYATIRIM), stratejik ürün ve TEKMER destek programlarında başvuru ve süreç yönetimi.',
+        tags: ['Girişimci', 'Yeşil Sanayi', 'TEKNOYATIRIM', 'Stratejik Ürün', 'TEKMER'],
+        benefits: { rate: '%60 – %80', limit: '20 Milyon TL\'ye Kadar', duration: '12 – 36 Ay', who: 'KOBİ ve Yeni Girişimciler', period: 'Sürekli / Çağrı Bazlı' },
+        criteria: [
+          'KOSGEB veri tabanına kayıtlı ve güncel KOBİ beyannamesine sahip olmak',
+          'İmalat, yazılım veya teknoloji tabanlı NACE kodlarında faaliyet göstermek',
+          'Yatırım, makine-teçhizat veya ticarileşme odaklı somut iş planı sunmak',
+          'SGK ve vergi borcu yapılandırma/temizlik şartlarını sağlamak'
+        ],
+        programGroups: [
+          {
+            groupName: 'KOSGEB Ana Destek Programları',
+            items: [
+              { code: 'Girişimci', name: 'İş Geliştirme Desteği', desc: 'Yeni kurulan girişimlerin makine, yazılım ve personel giderleri için geri ödemeli/hibe destek.', rate: '%80 Destek' },
+              { code: 'Yeşil', name: 'Türkiye Yeşil Sanayi Projesi', desc: 'Sanayi KOBİ\'lerinin güneş enerjisi ve temiz üretim dönüşüm yatırımları.', rate: '%60-%90' },
+              { code: 'TEKNO', name: 'TEKNOYATIRIM — Teknolojik Ürün Yatırım Desteği', desc: 'Ar-Ge sonucu ortaya çıkan teknolojik ürünlerin seri üretim yatırımları.', rate: '%60 Destek' },
+              { code: 'Stratejik', name: 'Stratejik Ürün Destek Programı', desc: 'İthalatı yüksek stratejik ürünlerin yerlileştirilmesine yönelik yatırımlar.', rate: '%60-%70' }
+            ]
+          }
+        ]
+      },
+      {
+        slug: 'yatirim-bolgesel',
+        num: '04',
+        name: 'Yatırım ve Bölgesel Destekler',
+        image: 'https://images.pexels.com/photos/257700/pexels-photo-257700.jpeg?auto=compress&cs=tinysrgb&w=1000',
+        accent: 'bg-amber-500/95 text-white',
+        shortDesc: 'Yatırım teşvik, HAMLE, teknokent, kalkınma ajansı ve IPARD destekleri.',
+        fullDesc: 'Makine-teçhizat ve tesis yatırımları için Yatırım Teşvik Belgesi, Teknoloji Odaklı Sanayi Hamlesi (HAMLE), teknokent ve TEKMER avantajları, kalkınma ajansı mali destekleri ve TKDK IPARD hibeleri.',
+        tags: ['Yatırım Teşvik', 'HAMLE', 'Teknokent', 'Kalkınma Ajansı', 'TKDK IPARD'],
+        benefits: { rate: 'KDV & Gümrük Muafiyeti / %50-%75 Hibe', limit: 'Yatırım Tutarına Göre', duration: '24 – 48 Ay', who: 'Sanayi, Tarım/Gıda, Teknoloji Firmaları', period: 'Sürekli / Çağrı Bazlı' },
+        criteria: [
+          'Yeni tesis kurulumu, kapasite artışı veya modernizasyon yatırımı planlamak',
+          'Yatırımın yapılacağı bölgenin teşvik haritasına uygun bütçe kurgulamak',
+          'Makine-teçhizat listesi ve fizibilite raporunu mevzuata uygun hazırlamak'
+        ],
+        programGroups: [
+          {
+            groupName: 'Yatırım ve Bölgesel Teşvikler',
+            items: [
+              { code: 'YTB', name: 'Yatırım Teşvik Belgesi', desc: 'KDV istisnası, gümrük vergisi muafiyeti, vergi indirimi ve SGK işveren hissesi desteği.', rate: 'Vergi & Muafiyet' },
+              { code: 'HAMLE', name: 'Teknoloji Odaklı Sanayi Hamlesi', desc: 'Orta-yüksek ve yüksek teknolojili ürünlerin uçtan uca üretim yatırımları.', rate: 'Stratejik Teşvik' },
+              { code: 'KA', name: 'Kalkınma Ajansı Mali Destekleri', desc: 'Bölgesel rekabet gücü, dijitalleşme ve yeşil dönüşüm hibe programları.', rate: '%50-%75 Hibe' },
+              { code: 'IPARD', name: 'TKDK IPARD III Programı', desc: 'Tarım, gıda işleme ve kırsal kalkınma yatırımları için AB destekli hibeler.', rate: '%50-%70 Hibe' }
+            ]
+          }
+        ]
+      },
+      {
+        slug: 'ihracat',
+        num: '05',
+        name: 'İhracat',
+        image: 'https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=1000',
+        accent: 'bg-cyan-600/90 text-white',
+        shortDesc: 'Ticaret Bakanlığı ihracat destekleri ve Turquality markalaşma programı.',
+        fullDesc: 'İmalat ve bilişim/hizmet sektörlerine yönelik Ticaret Bakanlığı ihracat destekleri, yurt dışı pazarlama, fuar, reklam, birim kira destekleri ve küresel markalaşma için Turquality programı.',
+        tags: ['Ticaret Bakanlığı İhracat Destekleri', 'Turquality', 'E-İhracat'],
+        benefits: { rate: '%50 – %70', limit: 'Yıllık Program Bazlı', duration: 'Sürekli / 5 Yıl (Turquality)', who: 'İhracatçı İmalat & Bilişim Firmaları', period: 'Sürekli' },
+        criteria: [
+          'Türkiye\'de yerleşik ticari faaliyet gösteren sermaye şirketi olmak',
+          'Yurt dışı tescilli marka veya küresel pazara açılma stratejisine sahip olmak',
+          'İhracatçı birliklerine üyelik ve DYS sistemine kayıt süreçlerini tamamlamak'
+        ],
+        programGroups: [
+          {
+            groupName: 'İhracat ve Markalaşma Programları',
+            items: [
+              { code: 'İhracat', name: 'Ticaret Bakanlığı Mal ve Hizmet İhracatı Destekleri', desc: 'Yurt dışı fuar, pazar araştırması, marka tescil, reklam ve birim kira destekleri.', rate: '%50-%70' },
+              { code: 'TRQ', name: 'Turquality ve Marka Destek Programı', desc: 'Türk markalarının uluslararası pazarlarda küresel oyuncu haline gelmesi için kapsamlı destek.', rate: '%50 Destek' },
+              { code: 'E-İhracat', name: 'E-İhracat Destekleri', desc: 'Yurt dışı pazaryeri komisyon, dijital reklam ve sipariş karşılama destekleri.', rate: '%50-%70' }
+            ]
+          }
+        ]
+      },
+      {
+        slug: 'dijital-donusum',
+        num: '06',
+        name: 'Dijital Dönüşüm ve Bakanlık Ar-Ge',
+        image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1000',
+        accent: 'bg-violet-600/90 text-white',
+        shortDesc: 'Dijital dönüşüm programları ve UDHAM Ar-Ge destekleri.',
+        fullDesc: 'KOBİ\'ler ve sanayi kuruluşları için Sanayi ve Teknoloji Bakanlığı ile KOSGEB dijital dönüşüm programları; ulaştırma, denizcilik ve haberleşme alanında UDHAM Ar-Ge destekleri.',
+        tags: ['Sanayi Bakanlığı Dijital Dönüşüm', 'KOSGEB KOBİ Dijital Dönüşüm', 'UDHAM'],
+        benefits: { rate: '%50 – %75', limit: 'Program Bazlı', duration: '12 – 24 Ay', who: 'KOBİ, Sanayi Kuruluşları, Teknoloji Firmaları', period: 'Çağrı Bazlı' },
+        criteria: [
+          'Üretim süreçlerinde ERP, MES, IoT, yapay zeka veya otomasyon dönüşümü planlamak',
+          'Akredite DDX dijital olgunluk değerlendirme raporu hazırlığına uygun olmak',
+          'Ulaştırma ve haberleşme odaklı yenilikçi Ar-Ge projesi geliştirmek (UDHAM)'
+        ],
+        programGroups: [
+          {
+            groupName: 'Dijital Dönüşüm & Bakanlık Programları',
+            items: [
+              { code: 'DDP', name: 'Sanayi ve Teknoloji Bakanlığı Dijital Dönüşüm Programı', desc: 'Sanayi tesislerinin uçtan uca dijitalleşme ve akıllı fabrika yatırımları.', rate: 'Öncelikli Teşvik' },
+              { code: 'KOSGEB', name: 'KOBİ Dijital Dönüşüm Destek Programı', desc: 'Yazılım, donanım ve dijital olgunluk yol haritası uygulama destekleri.', rate: 'Faizsiz / Hibe' },
+              { code: 'UDHAM', name: 'Ulaştırma ve Haberleşme Ar-Ge Destekleri', desc: 'Ulaştırma, denizcilik, havacılık ve haberleşme teknolojileri Ar-Ge hibeleri.', rate: '%75 Hibe' }
+            ]
+          }
+        ]
+      },
+      {
+        slug: 'arge-tasarim-merkezi',
+        num: '07',
+        name: 'Ar-Ge ve Tasarım Merkezi',
+        image: 'https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        accent: 'bg-teal-600/90 text-white',
+        shortDesc: 'Ar-Ge ve Tasarım Merkezi kuruluş ve süreç danışmanlığı.',
+        fullDesc: '5746 sayılı Kanun kapsamında Ar-Ge ve Tasarım Merkezi kuruluşu, bakanlık belgelendirme süreçleri, yıllık faaliyet raporu hazırlığı ve merkez faaliyetlerinin yürütülmesinde uçtan uca danışmanlık.',
+        tags: ['Ar-Ge Merkezi Danışmanlığı', 'Tasarım Merkezi Danışmanlığı', '5746 Sayılı Kanun'],
+        benefits: { rate: '%100 Ar-Ge İndirimi & Gelir Vergisi Stopajı', limit: 'Sürekli Vergi Avantajı', duration: 'Sürekli', who: '15+ Ar-Ge veya 10+ Tasarım Personelli Firmalar', period: 'Sürekli' },
+        criteria: [
+          'Ar-Ge Merkezi için en az 15 (belirli sektörlerde 30), Tasarım Merkezi için en az 10 tam zaman eşdeğer personel',
+          'Fiziki olarak ayrılmış, güvenliği sağlanmış müstakil merkez alanı',
+          'Sürdürülebilir Ar-Ge/tasarım proje portföyü ve kurumsal yönetim altyapısı'
+        ],
+        programGroups: [
+          {
+            groupName: '5746 Sayılı Kanun Hizmetlerimiz',
+            items: [
+              { code: 'Ar-Ge M.', name: 'Ar-Ge Merkezi Kuruluş ve Belgelendirme', desc: 'Ön fizibilite, başvuru dosyası hazırlığı, hakem denetimi ve bakanlık komisyon süreci.', rate: 'Vergi & SGK Avantajı' },
+              { code: 'Tasarım M.', name: 'Tasarım Merkezi Kuruluş ve Süreç Yönetimi', desc: 'Endüstriyel tasarım ve ürün geliştirme ekiplerinin merkeze dönüştürülmesi.', rate: 'Vergi & SGK Avantajı' },
+              { code: 'Süreç', name: 'Yıllık Faaliyet Raporu ve Denetim Danışmanlığı', desc: 'Mevcut merkezlerin sürdürülebilirliği, yıllık raporlama ve mevzuat uyumu.', rate: 'Sürekli Destek' }
+            ]
+          }
+        ]
+      }
+    ];
+
+    /* -----------------------------------------------------------
+       4. ÇÖZÜM ORTAKLARI HİZMETLERİ (9 ADET)
+    ------------------------------------------------------------ */
+    const partnerServices = [
+      'Marka, tasarım ve patent başvuruları',
+      'Patent ihlali analizleri',
+      'Şirket kuruluşu danışmanlığı',
+      'Birleşme, bölünme, satın alma ve tür değişikliği',
+      'Ar-Ge / Tasarım Merkezi mali danışmanlık',
+      'Teknopark mali danışmanlık',
+      'Bordrolama hizmetleri',
+      'Mali müşavirlik ve muhasebe',
+      'Kalite belgelendirme'
+    ];
+
+    /* -----------------------------------------------------------
+       5. AKTİVİTELER VERİSİ
+    ------------------------------------------------------------ */
+    const activitiesData = [
+      {
+        id: 'act-1',
+        category: 'Etkinlik',
+        tag: 'TÜBİTAK',
+        title: 'TÜBİTAK 1832 Sanayide Yeşil Dönüşüm Çağrısı Bilgilendirme Semineri',
+        summary: 'Sanayi kuruluşları için yeşil dönüşüm proje kurgusu, bütçe planlaması ve değerlendirme kriterlerini uygulamalı örneklerle ele alıyoruz.',
+        date: '18.12.2026',
+        meta: 'Online (Zoom)',
+        actionLabel: 'Kayıt ol',
+        image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
+        content: 'Bu çevrimiçi seminerde TÜBİTAK 1832 çağrısının başvuru koşulları, uygun harcama kalemleri, karbon ayak izi azaltım metrikleri ve hakem değerlendirme sürecinde dikkat edilmesi gereken kritik noktalar Sara Gemalmaz, PMP® tarafından aktarılacaktır.'
+      },
+      {
+        id: 'act-2',
+        category: 'Duyuru',
+        tag: 'KOSGEB',
+        title: 'KOSGEB Yeşil Sanayi Destek Programı Yeni Dönem Başvuruları Açıldı',
+        summary: 'İmalat sanayi KOBİ\'lerinin güneş enerjisi ve temiz üretim yatırımları için güncellenen üst limitler ve başvuru takvimi yayımlandı.',
+        date: '20.11.2026',
+        meta: 'Son başvuru: 15.12.2026',
+        actionLabel: 'Detaylar',
+        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+        content: 'KOSGEB Yeşil Sanayi Destek Programı kapsamında KOBİ\'lerin enerji verimliliği ve yenilenebilir enerji yatırımlarına yönelik destek üst limitleri güncellendi. Uygunluk analizi ve başvuru dosyası hazırlığı için ücretsiz ön analiz formumuzdan bize ulaşabilirsiniz.'
+      },
+      {
+        id: 'act-3',
+        category: 'Blog yazısı',
+        tag: 'Yeşil dönüşüm',
+        title: 'Sınırda Karbon Düzenlemesi (SKDM) Sürecinde Hangi Hibelerden Yararlanabilirsiniz?',
+        summary: 'Avrupa Birliği\'ne ihracat yapan sanayi kuruluşları için yeşil dönüşüm finansmanı, TÜBİTAK ve KOSGEB desteklerinin karşılaştırmalı rehberi.',
+        date: '12.11.2026',
+        meta: '5 dk okuma',
+        actionLabel: 'Oku',
+        image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80',
+        content: 'Avrupa Yeşil Mutabakatı ve SKDM yükümlülükleri, Türk sanayicisi için hem bir uyum süreci hem de rekabet avantajı fırsatı sunuyor. Bu yazıda emisyon azaltımı, enerji verimliliği ve döngüsel ekonomi projelerinizi hangi ulusal ve uluslararası fonlarla finanse edebileceğinizi özetledik.'
+      },
+      {
+        id: 'act-4',
+        category: 'Eğitim',
+        tag: 'Gazi Teknopark',
+        title: 'Ar-Ge Projelerinde Bütçe Yönetimi ve Mali Raporlama Atölyesi',
+        summary: 'Gazi Teknopark iş birliğiyle teknoloji firmalarına yönelik TÜBİTAK TEYDEB mali raporlama ve YMM süreçleri uygulamalı eğitimi.',
+        date: '26.12.2026',
+        meta: 'Gazi Teknopark, Ankara',
+        actionLabel: 'Kayıt ol',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
+        content: 'Ar-Ge projelerinin teknik başarısı kadar mali mevzuata uygun raporlanması da hibe kesintilerinin önüne geçmek için kritiktir. Bu atölyede personel giderleri, hizmet alımları ve alet-teçhizat kalemlerinin doğru belgelendirilmesi ele alınacaktır.'
+      },
+      {
+        id: 'act-5',
+        category: 'Bilgi notu',
+        tag: 'Uluslararası',
+        title: 'EUREKA-Eurostars 2027 Çağrı Takvimi ve Konsorsiyum Kurma Rehberi',
+        summary: 'Yurt dışı ortaklı Ar-Ge projeleri geliştirmek isteyen KOBİ\'ler için ortak bulma, iş paketi paylaşımı ve bütçe eşleştirme bilgi notu.',
+        date: '05.11.2026',
+        meta: 'TÜBİTAK 1709 / Eurostars',
+        actionLabel: 'Oku',
+        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+        content: 'EUREKA-Eurostars programı, Ar-Ge odaklı KOBİ\'lerin uluslararası pazarlara açılması için en etkili hibe mekanizmalarından biridir. Bilgi notumuzda konsorsiyum sözleşmesi, fikri mülkiyet paylaşımı ve ulusal fonlama kurallarını bulabilirsiniz.'
+      },
+      {
+        id: 'act-6',
+        category: 'Blog yazısı',
+        tag: 'Yatırım ve bölgesel',
+        title: 'Yatırım Teşvik Belgesi ile HAMLE Programı Arasındaki Temel Farklar',
+        summary: 'Makine-teçhizat ve yeni tesis yatırımı planlayan sanayiciler için doğru teşvik stratejisini seçme kriterleri.',
+        date: '28.10.2026',
+        meta: '4 dk okuma',
+        actionLabel: 'Oku',
+        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
+        content: 'Yatırım Teşvik Belgesi genel ve bölgesel yatırımlarda hızlı vergi avantajı sağlarken, Teknoloji Odaklı Sanayi Hamlesi (HAMLE) öncelikli ürün listesinde yer alan yüksek katma değerli yatırımlar için Ar-Ge ve yatırım desteklerini tek pencerede birleştirir.'
+      }
+    ];
+
+    /* -----------------------------------------------------------
+       6. GENEL SSS VERİSİ (İLETİŞİM SAYFASI)
+    ------------------------------------------------------------ */
+    const generalFaqs = [
+      {
+        q: 'Ön analiz gerçekten ücretsiz mi, neleri kapsıyor?',
+        a: 'Evet, tamamen ücretsizdir. 30 dakikalık görüşmede firmanızın faaliyet alanını, yatırım veya Ar-Ge planını analiz ediyor; başvurabileceğiniz en uygun hibe/teşvik programlarını ve tahmini destek oranlarını içeren özet bir yol haritası paylaşıyoruz.'
+      },
+      {
+        q: 'Ücretlendirme nasıl yapılıyor?',
+        a: 'Ücretlendirme; seçilen programın kapsamına, teknik yoğunluğuna ve danışmanlık modeline (sadece başvuru hazırlığı veya uçtan uca proje takibi) göre şeffaf bir teklif ile belirlenir. Ön analiz sonrasında net maliyet tablosunu sunuyoruz.'
+      },
+      {
+        q: 'Başvurudan sonuca süreç ne kadar sürüyor?',
+        a: 'Program türüne göre değişiklik gösterir. KOSGEB ve Yatırım Teşvik başvuruları genellikle 1–3 ay içinde sonuçlanırken, TÜBİTAK TEYDEB ve uluslararası programlarda değerlendirme süreci ortalama 3–6 ay sürmektedir.'
+      },
+      {
+        q: 'Başvuru reddedilirse ne oluyor?',
+        a: 'Hakem veya kurul geri bildirimlerini detaylı şekilde analiz ediyoruz. Projenin eksiklerini gidererek revizyon ve yeniden başvuru sürecini veya alternatif uygun programlara yönlendirme adımlarını birlikte planlıyoruz.'
+      },
+      {
+        q: 'Hangi bilgi ve belgeleri hazırlamamız gerekiyor?',
+        a: 'İlk aşamada sadece proje fikrinizi veya yatırım planınızı özetlemeniz yeterlidir. Başvuru aşamasına geçildiğinde ihtiyacınız olan tüm teknik, idari ve mali belgeler için size özel bir kontrol listesi paylaşıyoruz.'
+      },
+      {
+        q: 'Proje bilgilerimizin gizliliği nasıl korunuyor?',
+        a: 'Tüm görüşmeler ve paylaşılan teknik dokümanlar karşılıklı Gizlilik Sözleşmesi (NDA) ve KVKK mevzuatı çerçevesinde korunur. Firma bilgileriniz izniniz olmadan üçüncü taraflarla paylaşılmaz.'
+      }
+    ];
+
+    /* -----------------------------------------------------------
+       7. UYGULAMA DURUMU (STATE)
+    ------------------------------------------------------------ */
+    let currentRoute = 'anasayfa';
+    let currentServiceSlug = 'tubitak';
+    let activeCallIndex = 0;
+    let activeActivityFilter = 'Tümü';
+    let isMarqueePaused = false;
+    let preselectedContactService = '';
+
+    /* -----------------------------------------------------------
+       8. YARDIMCI FONKSİYONLAR
+    ------------------------------------------------------------ */
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 3200);
+    }
+
+    function openModal(title, bodyHtml, footerHtml = '') {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-body').innerHTML = bodyHtml;
+      const footer = document.getElementById('modal-footer');
+      footer.innerHTML = footerHtml || `<button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl border border-brand-border bg-white text-sm font-medium text-brand-slate hover:bg-slate-50">Kapat</button>`;
+      const modal = document.getElementById('global-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      if (typeof lenisInstance !== 'undefined' && lenisInstance) lenisInstance.stop();
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('global-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+      if (typeof lenisInstance !== 'undefined' && lenisInstance) lenisInstance.start();
+    }
+
+    function openLegalModal(type) {
+      if (type === 'kvkk') {
+        openModal('KVKK Aydınlatma Metni', `
+          <p><strong>GOODSAN Ar-Ge Danışmanlık</strong> olarak 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında kişisel verilerinizin güvenliğine önem veriyoruz.</p>
+          <p>Web sitemizdeki ön analiz ve iletişim formları aracılığıyla paylaştığınız ad-soyad, firma unvanı, telefon, e-posta ve proje özeti bilgileriniz; yalnızca talebinizin değerlendirilmesi, size uygun hibe ve teşvik programlarının belirlenmesi ve tarafınızla iletişime geçilmesi amacıyla işlenmektedir.</p>
+          <p>Kişisel verileriniz yasal zorunluluklar dışında üçüncü kişilerle paylaşılmaz. KVKK'nın 11. maddesi kapsamındaki haklarınız için <strong>sara@goodsanarge.com</strong> adresinden bize ulaşabilirsiniz.</p>
+        `);
+      } else {
+        openModal('Çerez Politikası', `
+          <p><strong>www.goodsanarge.com</strong> web sitemizde kullanıcı deneyimini iyileştirmek ve sayfa performansını ölçümlemek amacıyla yalnızca zorunlu ve işlevsel çerezler kullanılmaktadır.</p>
+          <p>Tarayıcı ayarlarınız üzerinden çerez tercihlerinizi dilediğiniz zaman değiştirebilir veya çerezleri devre dışı bırakabilirsiniz.</p>
+        `);
+      }
+    }
+
+    function openActivityModal(id) {
+      const act = activitiesData.find(a => a.id === id);
+      if (!act) return;
+      openModal(act.title, `
+        <img src="${act.image}" alt="${act.title}" onerror="this.src='https://placehold.co/800x400/EFF6FF/2B3D4F?text=GOODSAN'" class="w-full h-52 object-cover rounded-xl mb-4" />
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="px-2.5 py-1 rounded-full bg-brand-dark text-white text-xs font-semibold">${act.category}</span>
+          <span class="px-2.5 py-1 rounded-full bg-brand-soft text-brand-blue text-xs font-semibold">${act.tag}</span>
+          <span class="text-xs text-brand-muted ml-auto">${act.date} • ${act.meta}</span>
+        </div>
+        <p class="text-slate-700 leading-relaxed">${act.content}</p>
+      `, `
+        <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl border border-brand-border bg-white text-sm font-medium text-brand-slate hover:bg-slate-50">Kapat</button>
+        <button type="button" onclick="closeModal(); navigateTo('iletisim');" class="px-5 py-2 rounded-xl bg-brand-blue hover:bg-brand-blueHover text-white text-sm font-semibold">Ücretsiz Ön Analiz İste</button>
+      `);
+    }
+
+    function shareOnLinkedIn(title) {
+      showToast(`"${title.slice(0, 32)}..." LinkedIn paylaşım bağlantısı kopyalandı.`);
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const ham = document.getElementById('hamburger-icon');
+      const close = document.getElementById('close-icon');
+      const isHidden = menu.classList.contains('hidden');
+      menu.classList.toggle('hidden', !isHidden);
+      ham.classList.toggle('hidden', isHidden);
+      close.classList.toggle('hidden', !isHidden);
+      updateHeaderAppearance();
+    }
+
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu').classList.add('hidden');
+      document.getElementById('hamburger-icon').classList.remove('hidden');
+      document.getElementById('close-icon').classList.add('hidden');
+      updateHeaderAppearance();
+    }
+
+    function toggleAccordion(btn) {
+      const item = btn.closest('.accordion-item');
+      item.classList.toggle('open');
+    }
+
+    function toggleMarquee() {
+      isMarqueePaused = !isMarqueePaused;
+      const track = document.getElementById('logo-marquee-track');
+      const btn = document.getElementById('marquee-toggle-btn');
+      if (track && btn) {
+        track.classList.toggle('paused', isMarqueePaused);
+        btn.textContent = isMarqueePaused ? 'Devam Et' : 'Durdur';
+      }
+    }
+
+    let activeCallsTimer = null;
+    let isActiveCallsPaused = false;
+    let isActiveCallsHovered = false;
+
+    function startActiveCallsTicker() {
+      stopActiveCallsTicker();
+      if (currentRoute !== 'anasayfa' || isActiveCallsPaused) return;
+      activeCallsTimer = setInterval(() => {
+        if (!isActiveCallsPaused && !isActiveCallsHovered && currentRoute === 'anasayfa') {
+          selectActiveCall((activeCallIndex + 1) % activeCalls.length, false);
+        }
+      }, 5500);
+    }
+
+    function stopActiveCallsTicker() {
+      if (activeCallsTimer) {
+        clearInterval(activeCallsTimer);
+        activeCallsTimer = null;
+      }
+    }
+
+    function toggleActiveCallsTicker() {
+      isActiveCallsPaused = !isActiveCallsPaused;
+      const btn = document.getElementById('active-calls-toggle-btn');
+      if (btn) {
+        btn.textContent = isActiveCallsPaused ? 'Devam Et' : 'Durdur';
+      }
+      if (isActiveCallsPaused) stopActiveCallsTicker();
+      else startActiveCallsTicker();
+    }
+
+    function selectActiveCall(index, resetTimer = true) {
+      activeCallIndex = index;
+      const daysBadge = document.getElementById('active-call-days-badge');
+      const infoBox = document.getElementById('active-call-info');
+      const actionsBox = document.getElementById('active-call-actions');
+      const tabs = document.querySelectorAll('.call-tab-btn');
+      const call = activeCalls[index];
+      if (!infoBox || !call) return;
+
+      tabs.forEach((t, i) => {
+        if (i === index) {
+          t.className = 'call-tab-btn px-4 py-1.5 rounded-full text-xs font-bold bg-white border border-brand-blue text-brand-blue shadow-xs transition-all';
+        } else {
+          t.className = 'call-tab-btn px-4 py-1.5 rounded-full text-xs font-medium bg-slate-100/90 hover:bg-white border border-slate-200 text-slate-600 hover:text-brand-slate transition-all';
+        }
+      });
+
+      if (daysBadge) {
+        daysBadge.textContent = call.daysLeft;
+      }
+
+      infoBox.innerHTML = `
+        <h2 class="text-base sm:text-[17px] font-bold text-brand-dark truncate">${call.title}</h2>
+        <p class="text-xs sm:text-sm text-slate-500 truncate mt-1">${call.eligibility} · Son başvuru: ${call.deadline}</p>
+      `;
+
+      if (actionsBox) {
+        actionsBox.innerHTML = `
+          <button type="button" onclick="goToContactWithService('${call.shortTitle}')"
+                  class="px-5 py-2.5 rounded-xl bg-brand-blue hover:bg-brand-blueHover text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors whitespace-nowrap">
+            Ön analiz iste
+          </button>
+          <button type="button" onclick="navigateTo('hizmet-detay', null, '${call.serviceSlug}')"
+                  class="text-xs sm:text-sm font-semibold text-brand-slate hover:text-brand-blue underline underline-offset-4 transition-colors whitespace-nowrap">
+            Detaylar
+          </button>
+        `;
+      }
+
+      if (resetTimer && !isActiveCallsPaused) {
+        startActiveCallsTicker();
+      }
+    }
+
+    function goToContactWithService(serviceLabel) {
+      preselectedContactService = serviceLabel;
+      navigateTo('iletisim');
+    }
+
+    /* -----------------------------------------------------------
+       9. SAYFA ŞABLONLARI (VIEWS)
+    ------------------------------------------------------------ */
+
+    // --- 1. ANASAYFA ---
+    function renderHomePage() {
+      const firstCall = activeCalls[activeCallIndex];
+      const logos = [
+        'TEKNOPARK ANKARA', 'GAZİ TEKNOPARK', 'ANKARA SANAYİ ODASI',
+        'SAVUNMA AR-GE A.Ş.', 'ANADOLU MAKİNE', 'NOVA YAZILIM',
+        'EGE ENERJİ SİSTEMLERİ', 'BİYO-GIDA TEKNOLOJİ'
+      ];
+
+      return `
+        <div class="page-animate">
+          <!-- HERO BÖLÜMÜ (TAM EKRAN KURUMSAL DÜZEN) -->
+          <section class="relative min-h-screen w-full flex flex-col justify-end overflow-hidden bg-slate-950">
+            <!-- Arka Plan Stok Görsel: Uzaktan Görünen Toplantı Masası ve Ekip -->
+            <img
+              src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=2200"
+              onerror="this.onerror=null; this.src='https://images.pexels.com/photos/1181370/pexels-photo-1181370.jpeg?auto=compress&cs=tinysrgb&w=2200';"
+              alt="Geniş açıdan toplantı masasında çalışan ekip"
+              class="absolute inset-0 w-full h-full object-cover object-center"
+            />
+            <!-- Dengeli Koyu Katman -->
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/55 via-slate-950/40 to-slate-950/80"></div>
+            <div class="absolute inset-0 bg-[#0B1928]/25"></div>
+
+            <!-- Alt İçerik Satırı -->
+            <div class="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-16 sm:pb-20 lg:pb-24">
+              <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-12">
+                <!-- Sol: Kalın Sans-Serif Başlık & Alt Metin -->
+                <div class="max-w-3xl">
+                  <div class="text-xs sm:text-sm font-bold tracking-[0.18em] uppercase text-blue-200/95 mb-5">
+                    OPTİMUM FAYDA, MAKSİMUM İNOVASYON
+                  </div>
+                  <h1 class="font-display text-3xl sm:text-4xl lg:text-[52px] font-extrabold text-white tracking-[-0.015em] leading-[1.3] sm:leading-[1.28] lg:leading-[1.26]">
+                    Ar-Ge, yatırım ve ihracat projeleriniz için doğru hibe ve teşviki birlikte bulalım
+                  </h1>
+                  <p class="mt-6 font-sans text-base sm:text-lg text-white/85 font-medium leading-[1.7] max-w-2xl">
+                    TÜBİTAK, KOSGEB, uluslararası programlar ve yatırım teşviklerinde 10 yılı aşkın deneyimle; savunmadan gıdaya pek çok sektörde projeleri fikirden sonuca taşıyoruz.
+                  </p>
+                </div>
+
+                <!-- Sağ: Modern İki Katmanlı İletişime Geçin Butonu -->
+                <div class="shrink-0 lg:mb-1">
+                  <button type="button" onclick="navigateTo('iletisim')"
+                          class="group relative inline-flex items-center gap-5 px-7 py-4 rounded-xl bg-brand-blue hover:bg-brand-blueHover text-white font-display shadow-[0_14px_34px_-8px_rgba(37,99,235,0.6)] ring-1 ring-white/25 hover:ring-white/45 transition-all duration-300 hover:-translate-y-0.5">
+                    <span class="flex flex-col items-start text-left leading-tight">
+                      <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-100/90">Ücretsiz Ön Analiz</span>
+                      <span class="mt-0.5 text-base font-extrabold tracking-tight text-white">İletişime Geçin</span>
+                    </span>
+                    <span class="w-10 h-10 rounded-lg bg-white/15 group-hover:bg-white group-hover:text-brand-blue text-white flex items-center justify-center transition-all duration-300">
+                      <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- AKTİF ÇAĞRILAR ŞERİDİ (HERO HEMEN ALTI) -->
+          <section id="active-calls-bar"
+                   onmouseenter="isActiveCallsHovered = true"
+                   onmouseleave="isActiveCallsHovered = false"
+                   class="bg-gradient-to-r from-slate-100 via-slate-50 to-blue-50/60 border-y border-slate-200/90 py-10 sm:py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="bg-white/95 rounded-2xl border border-slate-200/90 shadow-card px-6 sm:px-8 py-6 sm:py-7 flex flex-col md:flex-row md:items-center gap-6">
+                <!-- Sol Taraf: Büyük ve Belirgin Megafon Görseli -->
+                <div class="flex items-center md:pr-6 md:border-r md:border-slate-200/80 shrink-0">
+                  <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-brand-soft via-blue-50 to-white border border-blue-200/80 shadow-sm flex items-center justify-center shrink-0" aria-hidden="true">
+                    <svg class="w-20 h-20 sm:w-[88px] sm:h-[88px]" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g transform="rotate(-30 58 68)" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Konik gövde hafif mavi dolgu -->
+                        <path d="M26 49 L78 28 V96 L26 75 Z" fill="#EFF6FF" />
+                        <!-- Tutma sapı -->
+                        <path d="M26 75 V103 C26 108 30 112 35 112 C40 112 44 108 44 103 V82" fill="#FFFFFF" stroke="#1E3A5F" stroke-width="6.5" />
+                        <!-- Arka kapak -->
+                        <path d="M26 49 H20 C14.5 49 10 53.5 10 59 V65 C10 70.5 14.5 75 20 75 H26 Z" fill="#DBEAFE" stroke="#1E3A5F" stroke-width="6.5" />
+                        <!-- Konik gövde hatları -->
+                        <path d="M26 49 L78 28 M26 75 L78 96" stroke="#1E3A5F" stroke-width="6.5" />
+                        <!-- Ön ağız elipsi -->
+                        <ellipse cx="78" cy="62" rx="13" ry="34" fill="#FFFFFF" stroke="#1E3A5F" stroke-width="6.5" />
+                        <!-- İç ses konisi kıvrımı -->
+                        <path d="M74 51 C83 51 83 73 74 73" stroke="#2563EB" stroke-width="6" />
+                        <!-- 3 Ses Dalgası -->
+                        <path d="M97 40 L109 30" stroke="#2563EB" stroke-width="6.5" />
+                        <path d="M101 62 L117 62" stroke="#2563EB" stroke-width="6.5" />
+                        <path d="M97 84 L109 94" stroke="#2563EB" stroke-width="6.5" />
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Sağ Taraf: 2 Satırlı Aktif Çağrılar İçeriği -->
+                <div class="flex-1 min-w-0">
+                  <!-- Üst Satır: Başlık + Süre + Çağrı Detayı + CTA -->
+                  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5">
+                    <div class="flex flex-wrap items-center gap-3 shrink-0">
+                      <!-- AKTİF ÇAĞRILAR + Sayaç -->
+                      <div class="inline-flex items-center gap-2">
+                        <span class="text-xs font-extrabold tracking-wider uppercase text-brand-slate">AKTİF ÇAĞRILAR</span>
+                        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-blue text-white text-[11px] font-bold">${activeCalls.length}</span>
+                      </div>
+
+                      <!-- Süre / Durum Rozeti -->
+                      <span id="active-call-days-badge" class="px-3 py-1 rounded-lg bg-slate-50 border border-slate-200/90 text-xs font-semibold text-brand-blue whitespace-nowrap">
+                        ${firstCall.daysLeft}
+                      </span>
+                    </div>
+
+                    <!-- Orta: Seçili Çağrı Başlık & Kısa Özet -->
+                    <div id="active-call-info" class="flex-1 min-w-0 lg:px-2">
+                      <h2 class="text-base sm:text-[17px] font-bold text-brand-dark truncate">${firstCall.title}</h2>
+                      <p class="text-xs sm:text-sm text-slate-500 truncate mt-1">${firstCall.eligibility} · Son başvuru: ${firstCall.deadline}</p>
+                    </div>
+
+                    <!-- Sağ: Ön Analiz İste & Detaylar -->
+                    <div id="active-call-actions" class="flex items-center gap-4 shrink-0">
+                      <button type="button" onclick="goToContactWithService('${firstCall.shortTitle}')"
+                              class="px-5 py-2.5 rounded-xl bg-brand-blue hover:bg-brand-blueHover text-white text-xs sm:text-sm font-semibold shadow-sm transition-colors whitespace-nowrap">
+                        Ön analiz iste
+                      </button>
+                      <button type="button" onclick="navigateTo('hizmet-detay', null, '${firstCall.serviceSlug}')"
+                              class="text-xs sm:text-sm font-semibold text-brand-slate hover:text-brand-blue underline underline-offset-4 transition-colors whitespace-nowrap">
+                        Detaylar
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Alt Satır: Çağrı Sekme Hapları + Durdur & Tüm Çağrılar -->
+                  <div class="border-t border-slate-200/80 pt-5 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex flex-wrap items-center gap-2">
+                      ${activeCalls.map((c, idx) => `
+                        <button type="button" onclick="selectActiveCall(${idx})"
+                                class="call-tab-btn px-4 py-1.5 rounded-full text-xs ${idx === activeCallIndex ? 'font-bold bg-white border border-brand-blue text-brand-blue shadow-xs' : 'font-medium bg-slate-100/90 hover:bg-white border border-slate-200 text-slate-600 hover:text-brand-slate'} transition-all">
+                          ${c.shortTitle}${c.daysLeft !== 'Aktif Çağrı' ? ' · ' + c.daysLeft.replace(' kaldı', '') : ''}
+                        </button>
+                      `).join('')}
+                    </div>
+
+                    <div class="flex items-center gap-4 shrink-0">
+                      <button type="button" id="active-calls-toggle-btn" onclick="toggleActiveCallsTicker()"
+                              class="px-3.5 py-1.5 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 hover:border-brand-blue text-xs font-semibold text-brand-slate transition-colors">
+                        ${isActiveCallsPaused ? 'Devam Et' : 'Durdur'}
+                      </button>
+                      <button type="button" onclick="navigateToActivities('Duyuru')"
+                              class="text-xs sm:text-sm font-semibold text-brand-slate hover:text-brand-blue underline underline-offset-4 transition-colors">
+                        Tüm çağrılar &rarr;
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- LOGO ŞERİDİ & METRİKLER (TEK ÇERÇEVE İÇERİSİNDE) -->
+          <section class="py-12 sm:py-14 bg-white border-b border-brand-border/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <!-- Tek Birleşik Çerçeve: Sol El Sıkışma İkonu + Logo Şeridi + 4 Temel Metrik -->
+              <div class="rounded-3xl bg-gradient-to-br from-[#3D5268] via-[#465E76] to-[#3A5068] border border-white/20 shadow-[0_20px_48px_-16px_rgba(30,41,59,0.28)] px-6 sm:px-8 py-7 sm:py-9">
+                <!-- Üst Kısım: Sol El Sıkışma İkonu + Kurum & Şirket Logo Şeridi -->
+                <div class="flex flex-col md:flex-row md:items-center gap-6">
+                  <!-- Sol Taraf: Belirgin El Sıkışma İkonu -->
+                  <div class="flex items-center md:pr-6 md:border-r md:border-white/20 shrink-0">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white/15 border border-white/25 shadow-sm flex items-center justify-center shrink-0 backdrop-blur-sm" aria-hidden="true">
+                      <svg class="w-20 h-20 sm:w-[86px] sm:h-[86px]" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#FFFFFF" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round">
+                          <!-- Sol gömlek manşeti -->
+                          <path d="M11 61 L25 34 C26.5 31 30 30 33 31.5 L42 36.5 C45 38 46 41.5 44.5 44.5 L30.5 71.5 C29 74.5 25.5 75.5 22.5 74 L13.5 69 C10.5 67.5 9.5 64 11 61 Z" fill="rgba(255,255,255,0.14)" />
+                          <!-- Sağ gömlek manşeti -->
+                          <path d="M117 61 L103 34 C101.5 31 98 30 95 31.5 L86 36.5 C83 38 82 41.5 83.5 44.5 L97.5 71.5 C99 74.5 102.5 75.5 105.5 74 L114.5 69 C117.5 67.5 118.5 64 117 61 Z" fill="rgba(255,255,255,0.14)" />
+                          <!-- Sol üst bilek bağlantısı -->
+                          <path d="M44 43 C50 45 55 45 60 44" />
+                          <!-- Sol alt bilek bağlantısı -->
+                          <path d="M31 70 L36 74" />
+                          <!-- Sağ alt bilek bağlantısı -->
+                          <path d="M97 70 L90 76" />
+                          <!-- Sağ el üst kemer & kilitlenen başparmak -->
+                          <path d="M84 43 C77 43 72 39 65 40 C60 41 56 45 48 53 C44.5 56.5 44.5 62.5 48 65.5 C51.5 68.5 57 67.5 60 63 L64.5 56.5 L92 78 C95.5 81 95.5 86 92 89 C89 92 84.5 92 81.5 89.5" />
+                          <!-- Sağ el parmak araları -->
+                          <path d="M74 75 L85 84 C88 86.5 88 91.5 85 94.5 C82 97.5 77.5 97.5 74.5 95" />
+                          <path d="M67 82 L77 90 C80 92.5 80 97.5 77 100.5 C74 103.5 69.5 103.5 66.5 101" />
+                          <path d="M60 89 L68.5 96 C71.5 98.5 71 103 68 105.5 C65 108 60.5 107.5 58 104.5" />
+                          <!-- Sol altta kenetlenen 4 parmak ucu -->
+                          <rect x="33" y="72" width="11" height="17" rx="5.5" transform="rotate(38 38.5 80.5)" fill="rgba(147,197,253,0.22)" />
+                          <rect x="41" y="79" width="11" height="17" rx="5.5" transform="rotate(38 46.5 87.5)" fill="rgba(147,197,253,0.22)" />
+                          <rect x="49" y="86" width="11" height="16" rx="5.5" transform="rotate(38 54.5 94)" fill="rgba(147,197,253,0.22)" />
+                          <rect x="57" y="92" width="10" height="14" rx="5" transform="rotate(38 62 99)" fill="rgba(147,197,253,0.22)" />
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Sağ Taraf: Başlık + Kontroller + Kayan Logo Şeridi -->
+                  <div class="flex-1 min-w-0">
+                    <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
+                      <span class="text-xs font-bold tracking-[0.14em] uppercase text-white/90">BİRLİKTE ÇALIŞTIĞIMIZ ŞİRKETLER VE KURUMLAR</span>
+                      <div class="flex items-center gap-4">
+                        <button type="button" id="marquee-toggle-btn" onclick="toggleMarquee()"
+                                class="px-3.5 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 border border-white/25 text-xs font-semibold text-white transition-colors">
+                          Durdur
+                        </button>
+                        <a href="#hakkimizda" onclick="navigateTo('hakkimizda', 'referanslar'); return false;"
+                           class="text-xs font-semibold text-sky-200 hover:text-white transition-colors">
+                          Tüm referanslar &rarr;
+                        </a>
+                      </div>
+                    </div>
+
+                    <!-- Durdurulabilir Logo Marquee -->
+                    <div class="marquee-container overflow-hidden relative py-2">
+                      <div class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-[#41576E] to-transparent z-10"></div>
+                      <div class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-[#3C526A] to-transparent z-10"></div>
+                      <div id="logo-marquee-track" class="marquee-track gap-5">
+                        ${[...logos, ...logos].map(logo => `
+                          <div class="px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/22 border border-white/20 text-xs font-display font-bold tracking-wider text-white whitespace-nowrap backdrop-blur-sm transition-colors">
+                            ${logo}
+                          </div>
+                        `).join('')}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Alt Kısım: 4 Temel Metrik (Aynı Çerçeve İçerisinde) -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-8 pt-7 border-t border-white/15 reveal">
+                  <div class="p-5 rounded-2xl bg-white/95 border border-white/60 shadow-sm">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-brand-dark font-display">10+</div>
+                    <div class="text-sm text-brand-muted mt-1 font-medium">Yıl deneyim</div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/95 border border-white/60 shadow-sm">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-brand-dark font-display">9+</div>
+                    <div class="text-sm text-brand-muted mt-1 font-medium">Sektör</div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/95 border border-white/60 shadow-sm">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-brand-blue font-display">30+</div>
+                    <div class="text-sm text-brand-muted mt-1 font-medium">Destek programı</div>
+                  </div>
+                  <div class="p-5 rounded-2xl bg-white/95 border border-white/60 shadow-sm">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-brand-dark font-display">150+</div>
+                    <div class="text-sm text-brand-muted mt-1 font-medium">Tamamlanan proje</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- KİMLER İÇİN ÇALIŞIYORUZ -->
+          <section class="py-18 lg:py-24 bg-brand-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="max-w-2xl mb-12 reveal">
+                <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">KİMLER İÇİN ÇALIŞIYORUZ</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark mt-2">Size uygun desteği bulun</h2>
+                <p class="text-brand-muted mt-3">Program kodlarını bilmeniz gerekmez: firma tipinizi seçin, size uygun destek alanlarını görün.</p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+                <!-- Kart 1 -->
+                <div class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                  <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Yazılım ve teknokent firmaları" onerror="this.src='https://placehold.co/800x400/EFF6FF/2B3D4F?text=Yazilim+ve+Teknokent'" class="w-full h-44 object-cover" />
+                  <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-lg font-bold text-brand-dark mb-2">Yazılım ve teknokent firmaları</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed mb-5">Yeni ürün, yazılım ve teknoloji geliştirme projeleri; uluslararası ortaklı Ar-Ge ve dijital dönüşüm.</p>
+                    <div class="mt-auto pt-4 border-t border-brand-border/70">
+                      <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-muted mb-2.5">İLGİLİ DESTEKLER</span>
+                      <div class="flex flex-col gap-1.5 text-sm font-semibold text-brand-blue">
+                        <button type="button" onclick="navigateTo('hizmet-detay', null, 'tubitak')" class="text-left hover:underline">TÜBİTAK &rarr;</button>
+                        <button type="button" onclick="navigateTo('hizmet-detay', null, 'uluslararasi')" class="text-left hover:underline">Uluslararası programlar &rarr;</button>
+                        <button type="button" onclick="navigateTo('hizmet-detay', null, 'dijital-donusum')" class="text-left hover:underline">Dijital dönüşüm ve bakanlık Ar-Ge &rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Kart 2 -->
+                <div class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                  <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Sanayi kuruluşları ve üreticiler" onerror="this.src='https://placehold.co/800x400/EFF6FF/2B3D4F?text=Sanayi+ve+Uretim'" class="w-full h-44 object-cover" />
+                  <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-lg font-bold text-brand-dark mb-2">Sanayi kuruluşları ve üreticiler</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed mb-5">Ürün ve süreç geliştirme, makine-teçhizat yatırımı, yeşil dönüşüm ve ihracat projeleri.</p>
+                    <div class="mt-auto pt-4 border-t border-brand-border/70">
+                      <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-muted mb-2.5">İLGİLİ DESTEKLER</span>
+                      <div class="flex flex-col gap-1.5 text-sm font-semibold text-brand-blue">
+                        <button type="button" onclick="navigateTo('hizmet-detay', null, 'kosgeb')" class="text-left hover:underline">KOSGEB &rarr;</button>
+                        <button type="button" onclick="navigateTo('hizmet-detay', null, 'yatirim-bolgesel')" class="text-left hover:underline">Yatırım ve bölgesel destekler &rarr;</button>
+                        <button type="button" onclick="navigateTo('hizmet-detay', null, 'ihracat')" class="text-left hover:underline">İhracat &rarr;</button>
+                        <button type="button" onclick="navigateTo('hizmet-detay', null, 'tubitak')" class="text-left hover:underline">TÜBİTAK Yeşil Dönüşüm &rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Kart 3 -->
+                <div class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                  <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Teknokentler ve Ar-Ge merkezleri" onerror="this.src='https://placehold.co/800x400/EFF6FF/2B3D4F?text=Ar-Ge+Merkezleri'" class="w-full h-44 object-cover" />
+                  <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-lg font-bold text-brand-dark mb-2">Teknokentler ve Ar-Ge merkezleri</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed mb-5">Ar-Ge ve Tasarım Merkezi kuruluşu ve belgelendirme, teknokent avantajları ve kurumsal kapasite.</p>
+                    <div class="mt-auto pt-4 border-t border-brand-border/70">
+                      <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-muted mb-2.5">İLGİLİ DESTEKLER</span>
+                      <div class="flex flex-col gap-1.5 text-sm font-semibold text-brand-blue">
+                        <button type="button" onclick="navigateTo('hizmet-detay', null, 'arge-tasarim-merkezi')" class="text-left hover:underline">Ar-Ge ve Tasarım Merkezi &rarr;</button>
+                        <button type="button" onclick="navigateTo('hizmet-detay', null, 'yatirim-bolgesel')" class="text-left hover:underline">Yatırım ve bölgesel destekler &rarr;</button>
+                        <button type="button" onclick="navigateTo('hizmet-detay', null, 'tubitak')" class="text-left hover:underline">TÜBİTAK &rarr;</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- UZMANLIK ALANLARIMIZ (7 KART) -->
+          <section class="py-18 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 reveal">
+                <div>
+                  <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">UZMANLIK ALANLARIMIZ</span>
+                  <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark mt-2">Hibe, teşvik ve Ar-Ge destekleri</h2>
+                </div>
+                <button type="button" onclick="navigateTo('hizmetlerimiz')" class="text-sm font-semibold text-brand-blue hover:text-brand-blueHover">
+                  Tüm hizmetler &rarr;
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+                ${servicesData.map(s => `
+                  <div onclick="navigateTo('hizmet-detay', null, '${s.slug}')"
+                       class="group relative cursor-pointer rounded-2xl overflow-hidden min-h-[320px] sm:min-h-[340px] p-4 sm:p-5 flex flex-col justify-between shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 border border-slate-200/80 ${s.num === '07' ? 'md:col-span-2 lg:col-span-3 lg:min-h-[260px]' : ''}">
+                    <!-- Renkli Stok Arka Plan Görseli -->
+                    <img src="${s.image}" alt="${s.name}"
+                         onerror="this.onerror=null; this.src='https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=1000';"
+                         class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105" />
+                    <!-- Hafif Atmosferik Renk Derinliği -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-900/15 to-slate-950/20"></div>
+
+                    <!-- Üst Satır: Renkli Numara Rozeti & Ok -->
+                    <div class="relative z-10 flex items-center justify-between">
+                      <span class="text-xs font-extrabold tracking-widest ${s.accent} w-10 h-10 rounded-xl flex items-center justify-center shadow-md backdrop-blur-sm border border-white/25">
+                        ${s.num}
+                      </span>
+                      <span class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white flex items-center justify-center group-hover:bg-white group-hover:text-brand-dark transition-all duration-300">
+                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
+                      </span>
+                    </div>
+
+                    <!-- Alt Kısım: Yazıların Altında Blurlu Buzlu Cam Panel -->
+                    <div class="relative z-10 mt-auto rounded-xl bg-slate-900/55 backdrop-blur-md border border-white/20 p-5 shadow-lg transition-all duration-300 group-hover:bg-slate-900/65 ${s.num === '07' ? 'lg:max-w-2xl' : ''}">
+                      <h3 class="text-lg sm:text-xl font-bold text-white leading-snug mb-2">${s.name}</h3>
+                      <p class="text-sm text-white/85 leading-relaxed mb-3.5">${s.shortDesc}</p>
+                      <span class="text-xs sm:text-sm font-semibold text-sky-200 group-hover:text-white inline-flex items-center gap-1.5 transition-colors">
+                        İncele <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                      </span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <!-- NASIL ÇALIŞIYORUZ (4 ADIM) -->
+          <section class="py-18 lg:py-24 bg-brand-bg border-y border-brand-border/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="max-w-2xl mb-12 reveal">
+                <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">NASIL ÇALIŞIYORUZ</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark mt-2">Projenizi fikirden sonuca birlikte taşıyoruz</h2>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 lg:gap-x-10 pt-4 reveal">
+                ${[
+                  { num: '01', title: 'Ücretsiz Ön Analiz', desc: 'Firmanızın teknik ve mali yapısını inceliyor, projenizin destek potansiyelini değerlendiriyoruz.', meta: 'Çıktı: Uygunluk özeti • 1-2 iş günü' },
+                  { num: '02', title: 'Program Eşleştirme', desc: 'En yüksek hibe oranı ve en uygun takvimi sunan ulusal veya uluslararası programı belirliyoruz.', meta: 'Çıktı: Teşvik yol haritası • 3-5 gün' },
+                  { num: '03', title: 'Başvuru Hazırlığı', desc: 'Teknik dosya, iş paketleri, bütçe kurgusu ve sistem başvurularını eksiksiz tamamlıyoruz.', meta: 'Çıktı: Onaya hazır dosya • 2-4 hafta' },
+                  { num: '04', title: 'Proje Takibi ve Raporlama', desc: 'Destek onayından sonra dönemsel teknik/mali raporlama ve sonuçlandırma süreçlerini yönetiyoruz.', meta: 'Çıktı: Kesintisiz hibe tahsilatı' }
+                ].map((step, idx) => `
+                  <div class="relative flex flex-col">
+                    <div class="relative pt-9 pb-6 px-6 rounded-2xl bg-white border border-brand-border hover:border-brand-blue/40 shadow-card hover:shadow-card-hover transition-all duration-200 flex flex-col flex-1">
+                      <!-- Sağ Üst Köşede Çerçeveyi Kesen Büyük Adım Numarası -->
+                      <span class="absolute top-0 right-5 -translate-y-1/2 z-10 px-2.5 font-display text-5xl font-extrabold leading-none tracking-tight text-[#123A63] select-none"
+                            style="background: linear-gradient(to bottom, #F8FAFC 50%, #FFFFFF 50%);">
+                        ${step.num}
+                      </span>
+                      <h3 class="text-base font-bold text-brand-dark mb-2.5 pr-12">${step.title}</h3>
+                      <p class="text-sm text-brand-muted leading-relaxed mb-5 flex-1">${step.desc}</p>
+                      <div class="pt-3 border-t border-brand-border/70 text-xs font-medium text-brand-slate">${step.meta}</div>
+                    </div>
+                    ${idx < 3 ? `
+                      <!-- Masaüstü: Soldan Sağa Geçiş Oku -->
+                      <div class="hidden lg:flex items-center justify-center absolute top-1/2 -right-9 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white border border-[#123A63]/25 shadow-sm text-[#123A63] pointer-events-none" aria-hidden="true">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
+                      </div>
+                      <!-- Mobil: Yukarıdan Aşağı Geçiş Oku -->
+                      <div class="flex sm:hidden items-center justify-center pt-4 text-[#123A63]" aria-hidden="true">
+                        <span class="w-7 h-7 rounded-full bg-white border border-[#123A63]/25 shadow-sm flex items-center justify-center">
+                          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+                          </svg>
+                        </span>
+                      </div>
+                    ` : ''}
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <!-- SON AKTİVİTELER -->
+          <section class="py-18 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 reveal">
+                <div>
+                  <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">GÜNCEL</span>
+                  <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark mt-2">Son aktiviteler</h2>
+                </div>
+                <button type="button" onclick="navigateTo('aktiviteler')" class="text-sm font-semibold text-brand-blue hover:text-brand-blueHover">
+                  Tüm aktiviteler &rarr;
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+                ${activitiesData.slice(0, 3).map(act => `
+                  <article onclick="openActivityModal('${act.id}')" class="group cursor-pointer bg-white rounded-2xl border border-brand-border overflow-hidden shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all flex flex-col">
+                    <img src="${act.image}" alt="${act.title}" onerror="this.src='https://placehold.co/800x400/EFF6FF/2B3D4F?text=GOODSAN'" class="w-full h-44 object-cover" />
+                    <div class="p-5 flex-1 flex flex-col">
+                      <div class="flex items-center gap-2 mb-3">
+                        <span class="px-2.5 py-0.5 rounded-full bg-brand-dark text-white text-[11px] font-semibold">${act.category}</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-brand-soft text-brand-blue text-[11px] font-semibold">${act.tag}</span>
+                      </div>
+                      <h3 class="text-base font-bold text-brand-dark group-hover:text-brand-blue transition-colors mb-2 line-clamp-2">${act.title}</h3>
+                      <p class="text-xs text-brand-muted mt-auto pt-3 border-t border-brand-border/60">${act.date} • ${act.meta}</p>
+                    </div>
+                  </article>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <!-- ALT CTA BANNER -->
+          ${renderBottomCtaBanner('Projeniz hangi desteğe uygun?')}
+        </div>
+      `;
+    }
+
+    // --- 2. HİZMETLERİMİZ ---
+    function renderServicesPage() {
+      return `
+        <div class="page-animate">
+          <!-- Üst Başlık -->
+          <section class="bg-brand-bg border-b border-brand-border py-14 lg:py-18">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">HİZMETLERİMİZ</span>
+              <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark mt-2 max-w-3xl">Hibe, teşvik ve Ar-Ge destekleri</h1>
+              <p class="text-brand-muted mt-4 max-w-3xl leading-relaxed">
+                Ar-Ge, yatırım, ihracat, dijital dönüşüm ve yeşil sanayi desteklerinde danışmanlık ve eğitim hizmetleri sunuyoruz. Size uygun programı seçmekten proje yazımına ve sonuçlandırmaya kadar yanınızdayız.
+              </p>
+
+              <!-- Hızlı Çapa Butonları -->
+              <div class="flex flex-wrap gap-2 mt-7">
+                ${servicesData.map(s => `
+                  <a href="#svc-${s.slug}" onclick="document.getElementById('svc-${s.slug}')?.scrollIntoView({behavior:'smooth'}); return false;"
+                     class="px-3.5 py-1.5 rounded-full bg-white border border-brand-border hover:border-brand-blue hover:text-brand-blue text-xs font-semibold text-brand-slate transition-colors">
+                    ${s.name}
+                  </a>
+                `).join('')}
+              </div>
+
+              <!-- Yönlendirme Bandı -->
+              <div class="mt-8 p-4 sm:p-5 rounded-2xl bg-white border border-brand-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <p class="text-sm text-brand-slate font-medium">Hangi alanın size uygun olduğundan emin değil misiniz? Projenizi birlikte değerlendirelim.</p>
+                <button type="button" onclick="navigateTo('iletisim')" class="shrink-0 px-5 py-2.5 rounded-xl bg-brand-blue hover:bg-brand-blueHover text-white text-xs font-semibold transition-colors">
+                  Ücretsiz Ön Analiz
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 7 Detaylı Hizmet Kartı -->
+          <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+              ${servicesData.map(s => `
+                <div id="svc-${s.slug}" class="scroll-mt-28 p-6 sm:p-8 rounded-2xl bg-white border border-brand-border shadow-card hover:shadow-card-hover transition-all grid grid-cols-1 lg:grid-cols-12 gap-8 items-start reveal">
+                  <div class="lg:col-span-7 space-y-4">
+                    <div class="flex items-center gap-3">
+                      <span class="px-2.5 py-1 rounded-lg bg-brand-soft text-brand-blue text-xs font-extrabold">${s.num}</span>
+                      <h2 class="text-2xl font-bold text-brand-dark">${s.name}</h2>
+                    </div>
+                    <p class="text-sm sm:text-base text-brand-muted leading-relaxed">${s.fullDesc}</p>
+                    <div class="flex flex-wrap gap-2 pt-1">
+                      ${s.tags.map(t => `<span class="px-3 py-1 rounded-full bg-brand-bg border border-brand-border text-xs font-medium text-brand-slate">${t}</span>`).join('')}
+                    </div>
+                    <div class="pt-3">
+                      <button type="button" onclick="navigateTo('hizmet-detay', null, '${s.slug}')"
+                              class="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue hover:text-brand-blueHover">
+                        Daha fazla bilgi &rarr;
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Örnek Faydalar Kutusu -->
+                  <div class="lg:col-span-5 bg-brand-bg rounded-xl border border-brand-border p-5">
+                    <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-muted mb-3">ÖRNEK FAYDALAR</span>
+                    <dl class="space-y-2.5 text-sm">
+                      <div class="flex justify-between gap-4 pb-2 border-b border-brand-border/70">
+                        <dt class="text-brand-muted">Destek oranı</dt>
+                        <dd class="font-semibold text-brand-dark text-right">${s.benefits.rate}</dd>
+                      </div>
+                      <div class="flex justify-between gap-4 pb-2 border-b border-brand-border/70">
+                        <dt class="text-brand-muted">Üst limit</dt>
+                        <dd class="font-semibold text-brand-dark text-right">${s.benefits.limit}</dd>
+                      </div>
+                      <div class="flex justify-between gap-4 pb-2 border-b border-brand-border/70">
+                        <dt class="text-brand-muted">Proje süresi</dt>
+                        <dd class="font-semibold text-brand-dark text-right">${s.benefits.duration}</dd>
+                      </div>
+                      <div class="flex justify-between gap-4">
+                        <dt class="text-brand-muted">Kimler başvurabilir</dt>
+                        <dd class="font-semibold text-brand-dark text-right">${s.benefits.who}</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+
+          <!-- ÇÖZÜM ORTAKLARIMIZ (3x3 GRID) -->
+          <section id="cozum-ortaklari" class="scroll-mt-24 py-16 lg:py-20 bg-brand-bg border-t border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="max-w-2xl mb-10 reveal">
+                <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">ÇÖZÜM ORTAKLARIMIZ</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark mt-2">Çözüm ortaklarımızla sunduğumuz hizmetler</h2>
+                <p class="text-brand-muted mt-3">Ar-Ge ve hibe süreçlerini tamamlayan hukuki, mali ve sınai mülkiyet hizmetlerini güvenilir iş ortaklarımızla sunuyoruz.</p>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+                ${partnerServices.map(item => `
+                  <div class="p-5 rounded-xl bg-white border border-brand-border flex items-center gap-3.5 shadow-card">
+                    <span class="w-8 h-8 rounded-lg bg-brand-soft text-brand-blue flex items-center justify-center shrink-0">
+                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span class="text-sm font-semibold text-brand-dark">${item}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          ${renderBottomCtaBanner('Hangi destek size uygun?')}
+        </div>
+      `;
+    }
+
+    // --- 3. HİZMET DETAY SAYFASI (7 HİZMET İÇİN DİNAMİK) ---
+    function renderServiceDetailPage(slug) {
+      const s = servicesData.find(item => item.slug === slug) || servicesData[0];
+      return `
+        <div class="page-animate">
+          <!-- Üst Alan & Breadcrumb -->
+          <section class="bg-brand-bg border-b border-brand-border py-12 lg:py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex flex-wrap items-center justify-between gap-4 mb-6 text-xs font-medium text-brand-muted">
+                <div class="flex items-center gap-2">
+                  <a href="#hizmetlerimiz" onclick="navigateTo('hizmetlerimiz'); return false;" class="hover:text-brand-blue">Hizmetlerimiz</a>
+                  <span>/</span>
+                  <span class="text-brand-dark font-semibold">${s.name}</span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="text-brand-muted hidden sm:inline">Bu sayfada:</span>
+                  <a href="#detay-uygunluk" onclick="document.getElementById('detay-uygunluk')?.scrollIntoView({behavior:'smooth'}); return false;" class="hover:text-brand-blue">Uygunluk</a>
+                  <a href="#detay-programlar" onclick="document.getElementById('detay-programlar')?.scrollIntoView({behavior:'smooth'}); return false;" class="hover:text-brand-blue">Programlar</a>
+                  <a href="#detay-surec" onclick="document.getElementById('detay-surec')?.scrollIntoView({behavior:'smooth'}); return false;" class="hover:text-brand-blue">Süreç</a>
+                  <a href="#detay-sss" onclick="document.getElementById('detay-sss')?.scrollIntoView({behavior:'smooth'}); return false;" class="hover:text-brand-blue">SSS</a>
+                </div>
+              </div>
+
+              <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">DESTEK ALANI ${s.num}</span>
+              <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark mt-2">${s.name} Destekleri</h1>
+              <p class="text-brand-muted mt-4 max-w-3xl leading-relaxed">${s.fullDesc}</p>
+              <div class="mt-7">
+                <button type="button" onclick="goToContactWithService('${s.name}')"
+                        class="px-6 py-3 rounded-xl bg-brand-blue hover:bg-brand-blueHover text-white text-sm font-semibold shadow-sm">
+                  Ücretsiz Ön Analiz
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Uygunluk & Örnek Faydalar -->
+          <section id="detay-uygunluk" class="scroll-mt-24 py-14 bg-white border-b border-brand-border/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <div class="lg:col-span-7 space-y-4">
+                <h2 class="text-2xl font-bold text-brand-dark">Bu destek size uygun mu?</h2>
+                <ul class="space-y-3 pt-2">
+                  ${s.criteria.map(c => `
+                    <li class="flex items-start gap-3 text-sm text-slate-700">
+                      <span class="w-5 h-5 rounded-full bg-brand-soft text-brand-blue flex items-center justify-center shrink-0 mt-0.5">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span>${c}</span>
+                    </li>
+                  `).join('')}
+                </ul>
+                <p class="text-xs text-brand-muted pt-2">Çoğu maddeye uyuyorsanız güçlü bir adaysınız. Emin değilseniz projenizi birlikte değerlendirelim.</p>
+              </div>
+              <div class="lg:col-span-5 bg-brand-bg rounded-2xl border border-brand-border p-6">
+                <span class="block text-xs font-bold uppercase tracking-wider text-brand-blue mb-4">ÖRNEK FAYDALAR</span>
+                <dl class="space-y-3 text-sm">
+                  <div class="flex justify-between pb-2.5 border-b border-brand-border">
+                    <dt class="text-brand-muted">Destek oranı</dt>
+                    <dd class="font-bold text-brand-dark">${s.benefits.rate}</dd>
+                  </div>
+                  <div class="flex justify-between pb-2.5 border-b border-brand-border">
+                    <dt class="text-brand-muted">Üst limit</dt>
+                    <dd class="font-bold text-brand-dark text-right">${s.benefits.limit}</dd>
+                  </div>
+                  <div class="flex justify-between pb-2.5 border-b border-brand-border">
+                    <dt class="text-brand-muted">Proje süresi</dt>
+                    <dd class="font-bold text-brand-dark">${s.benefits.duration}</dd>
+                  </div>
+                  <div class="flex justify-between">
+                    <dt class="text-brand-muted">Başvuru dönemi</dt>
+                    <dd class="font-bold text-brand-dark">${s.benefits.period}</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </section>
+
+          <!-- Programlar Tablosu -->
+          <section id="detay-programlar" class="scroll-mt-24 py-14 bg-brand-bg border-b border-brand-border/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+              <h2 class="text-2xl font-bold text-brand-dark">Programlar</h2>
+              ${s.programGroups.map(group => `
+                <div class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-card">
+                  <div class="px-6 py-3.5 bg-brand-slate text-white text-xs font-bold uppercase tracking-wider">
+                    ${group.groupName}
+                  </div>
+                  <div class="divide-y divide-brand-border">
+                    ${group.items.map(p => `
+                      <div class="p-5 sm:px-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-brand-bg/60 transition-colors">
+                        <div class="flex items-start gap-4">
+                          <span class="px-2.5 py-1 rounded-lg bg-brand-soft text-brand-blue text-xs font-extrabold shrink-0 min-w-[64px] text-center">${p.code}</span>
+                          <div>
+                            <h3 class="text-sm sm:text-base font-bold text-brand-dark">${p.name}</h3>
+                            <p class="text-xs sm:text-sm text-brand-muted mt-0.5">${p.desc}</p>
+                          </div>
+                        </div>
+                        <div class="flex items-center justify-between md:justify-end gap-4 shrink-0 pl-20 md:pl-0">
+                          <span class="px-3 py-1 rounded-full bg-slate-100 text-brand-slate text-xs font-semibold">${p.rate}</span>
+                          <button type="button" onclick="goToContactWithService('${s.name} - ${p.code}')"
+                                  class="text-xs font-semibold text-brand-blue hover:underline whitespace-nowrap">
+                            Uygunluğu sorgula &rarr;
+                          </button>
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+
+          <!-- 5 Adımlı Süreç -->
+          <section id="detay-surec" class="scroll-mt-24 py-14 bg-white border-b border-brand-border/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 class="text-2xl font-bold text-brand-dark mb-8">Nasıl çalışıyoruz</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                ${[
+                  { n: '01', t: 'Ön Değerlendirme', d: 'Proje fikri ve firma uygunluk analizi.' },
+                  { n: '02', t: 'Kurgulama', d: 'İş paketleri, Ar-Ge niteliği ve bütçe planı.' },
+                  { n: '03', t: 'Başvuru', d: 'Resmi portal girişi ve teknik dosya teslimi.' },
+                  { n: '04', t: 'Hakem Süreci', d: 'Değerlendirme toplantısı hazırlığı ve revizyon.' },
+                  { n: '05', t: 'İzleme & Raporlama', d: 'Dönemsel teknik/mali rapor ve hibe tahsilatı.' }
+                ].map(st => `
+                  <div class="p-5 rounded-xl bg-brand-bg border border-brand-border">
+                    <span class="text-lg font-extrabold text-brand-blue font-display">${st.n}</span>
+                    <h3 class="text-sm font-bold text-brand-dark mt-2">${st.t}</h3>
+                    <p class="text-xs text-brand-muted mt-1.5 leading-relaxed">${st.d}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <!-- SSS -->
+          <section id="detay-sss" class="scroll-mt-24 py-14 bg-brand-bg">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 class="text-2xl font-bold text-brand-dark mb-6">Sık sorulan sorular</h2>
+              <div class="space-y-3">
+                ${generalFaqs.slice(0, 4).map(f => renderAccordionItem(f.q, f.a)).join('')}
+              </div>
+            </div>
+          </section>
+
+          ${renderBottomCtaBanner(`${s.name} projeniz için ücretsiz ön analiz`)}
+        </div>
+      `;
+    }
+
+    // --- 4. HAKKIMIZDA ---
+    function renderAboutPage() {
+      const sectors = ['Savunma sanayi', 'Makine imalatı', 'Mobilya', 'Yazılım', 'Enerji', 'Sağlık', 'Kimya', 'Gıda', 'Tarım ve orman ürünleri'];
+      return `
+        <div class="page-animate">
+          <!-- Biz Kimiz -->
+          <section id="biz-kimiz" class="scroll-mt-24 bg-brand-bg border-b border-brand-border py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">HAKKIMIZDA</span>
+              <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark mt-2">Biz kimiz?</h1>
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
+                <div class="lg:col-span-8 space-y-4 text-brand-muted leading-relaxed">
+                  <p>
+                    Ankara merkezli <strong>GOODSAN Ar-Ge Danışmanlık</strong>, alanında uzman ve deneyimli kadrosuyla pratik, teorik, ticari ve yönetimsel bilgi birikimini, güvenilir ve güçlü iş ortakları ile yerli ve yabancı müşterilere sunmaktadır.
+                  </p>
+                  <p>
+                    10 yılı aşkın tecrübemizle, teknoloji ve sanayi kuruluşları için Ar-Ge, yatırım, ihracat, dijital dönüşüm ve yeşil sanayi destekleri altında uçtan uca danışmanlık ve eğitim hizmetleri sunuyoruz.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Misyon & Vizyon -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+                <div class="p-7 rounded-2xl bg-white border border-brand-border shadow-card">
+                  <h2 class="text-lg font-bold text-brand-dark mb-3 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-blue"></span> Misyonumuz
+                  </h2>
+                  <p class="text-sm text-brand-muted leading-relaxed">
+                    İş ortaklarımızın teknik ve finansal kapasitelerini doğru analiz ederek TÜBİTAK, KOSGEB, kalkınma ajansları ve bakanlık fonlarını şirketlerin stratejik büyüme hedefleriyle eşleştirmek; proje yazımından sonuçlandırma aşamasına kadar maksimum fayda sağlamak.
+                  </p>
+                </div>
+                <div class="p-7 rounded-2xl bg-white border border-brand-border shadow-card">
+                  <h2 class="text-lg font-bold text-brand-dark mb-3 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-slate"></span> Vizyonumuz
+                  </h2>
+                  <p class="text-sm text-brand-muted leading-relaxed">
+                    Türkiye'nin katma değerli üretim, yeşil dönüşüm ve yüksek teknoloji ihracatı hedeflerine öncülük eden; mühendislik tabanlı proje yönetimi metodolojisiyle ulusal ve uluslararası düzeyde referans gösterilen lider danışmanlık kuruluşu olmak.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- KURUCU: SARA GEMALMAZ -->
+          <section id="kurucu" class="scroll-mt-24 py-16 lg:py-20 bg-white border-b border-brand-border/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-4">
+                  <div class="rounded-2xl overflow-hidden border border-brand-border shadow-dropdown bg-brand-bg">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
+                         alt="Sara Gemalmaz, PMP®"
+                         onerror="this.src='https://placehold.co/600x700/EFF6FF/2B3D4F?text=Sara+Gemalmaz'"
+                         class="w-full h-[380px] object-cover object-top" />
+                  </div>
+                </div>
+                <div class="lg:col-span-8 space-y-5">
+                  <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">KURUCU</span>
+                  <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark">Sara Gemalmaz, PMP®</h2>
+                  <p class="text-base text-brand-muted leading-relaxed">
+                    2014'ten bu yana Ar-Ge, hibe ve teşvik danışmanlığı yapan Sara Gemalmaz, PMP® proje yönetimi yetkinliğini hibe süreçlerine taşıyarak teknoloji ve sanayi kuruluşlarının projelerini fikirden sonuca yönetiyor.
+                  </p>
+                  <ul class="space-y-3 pt-2">
+                    <li class="flex items-start gap-3 text-sm text-slate-700">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-blue mt-2 shrink-0"></span>
+                      <span>2014'ten bu yana hibe, teşvik ve Ar-Ge proje yönetimi danışmanlığı</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-slate-700">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-blue mt-2 shrink-0"></span>
+                      <span>Gazi Teknopark ve Ankara Sanayi Odası iş birliğiyle kurumsal eğitimler</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-slate-700">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand-blue mt-2 shrink-0"></span>
+                      <span>Makale: <em>"Türkiye'de Ulusal Destek: Teşvik ve Hibeler"</em> — İstanbul Ticaret Üniversitesi Girişimcilik Dergisi (Dergipark)</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SEKTÖRLER -->
+          <section id="sektorler" class="py-14 bg-brand-bg border-b border-brand-border/70">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 class="text-xl font-bold text-brand-dark mb-5">Deneyim sahibi olduğumuz sektörler</h2>
+              <div class="flex flex-wrap gap-2.5">
+                ${sectors.map(sec => `
+                  <span class="px-4 py-2 rounded-full bg-white border border-brand-border text-sm font-medium text-brand-slate hover:border-brand-blue hover:text-brand-blue transition-colors">
+                    ${sec}
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <!-- REFERANSLAR & İŞ BİRLİKLERİ -->
+          <section id="referanslar" class="scroll-mt-24 py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+              <div>
+                <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">REFERANSLARIMIZ</span>
+                <h2 class="text-2xl font-extrabold text-brand-dark mt-2">Birlikte çalıştığımız şirketler</h2>
+                <p class="text-sm text-brand-muted mt-2 mb-8">Savunmadan gıdaya, yazılımdan enerjiye farklı sektörlerden teknoloji ve sanayi kuruluşları.</p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  ${['SAVUNMA TEKNOLOJİLERİ A.Ş.', 'ANADOLU MAKİNE SANAYİ', 'NOVA YAZILIM & BİLİŞİM', 'EGE YEŞİL ENERJİ', 'MEDİ-TEK SAĞLIK', 'POLİMER KİMYA A.Ş.', 'DOĞA GIDA AR-GE', 'MARMARA OTOMASYON'].map(ref => `
+                    <div class="h-24 rounded-xl bg-brand-bg border border-brand-border flex items-center justify-center p-4 text-center text-xs font-display font-bold tracking-wider text-brand-slate/80">
+                      ${ref}
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <div id="is-birlikleri" class="scroll-mt-24 pt-10 border-t border-brand-border">
+                <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">İŞ BİRLİKLERİMİZ</span>
+                <h2 class="text-2xl font-extrabold text-brand-dark mt-2">Teknoparklar ve kurumlar</h2>
+                <p class="text-sm text-brand-muted mt-2 mb-8">Eğitim, etkinlik ve proje iş birliği yaptığımız teknoparklar ve kurumlar.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  ${[
+                    { name: 'Gazi Teknopark', role: 'Eğitim ve mentörlük iş birliği' },
+                    { name: 'Ankara Sanayi Odası', role: 'Eğitim ve bilgilendirme iş birliği' },
+                    { name: 'Teknopark Ankara', role: 'Proje ve ekosistem iş birliği' },
+                    { name: 'Üniversite TTO\'ları', role: 'Üniversite-sanayi proje ortaklıkları' }
+                  ].map(coop => `
+                    <div class="p-5 rounded-xl bg-brand-bg border border-brand-border">
+                      <div class="font-bold text-brand-dark text-sm">${coop.name}</div>
+                      <div class="text-xs text-brand-muted mt-1">${coop.role}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          ${renderBottomCtaBanner('Birlikte çalışalım')}
+        </div>
+      `;
+    }
+
+    // --- 5. AKTİVİTELER ---
+    function renderActivitiesPage() {
+      const categories = ['Tümü', 'Etkinlik', 'Eğitim', 'Duyuru', 'Bilgi notu', 'Blog yazısı'];
+      const filtered = activeActivityFilter === 'Tümü'
+        ? activitiesData
+        : activitiesData.filter(a => a.category === activeActivityFilter);
+
+      return `
+        <div class="page-animate">
+          <section class="bg-brand-bg border-b border-brand-border py-14">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">AKTİVİTELER</span>
+              <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark mt-2">Etkinlikler, duyurular ve yazılar</h1>
+              <p class="text-brand-muted mt-3 max-w-2xl">Eğitim ve etkinliklerimiz, açılan destek çağrıları, program bilgi notları ve blog yazılarımız.</p>
+
+              <!-- Kategori Filtre Sekmeleri -->
+              <div class="flex flex-wrap gap-2 mt-8">
+                ${categories.map(cat => `
+                  <button type="button" onclick="filterActivities('${cat}')"
+                          class="px-4 py-2 rounded-full text-xs font-semibold transition-all ${activeActivityFilter === cat ? 'bg-brand-dark text-white shadow-sm' : 'bg-white border border-brand-border text-brand-slate hover:border-brand-blue hover:text-brand-blue'}">
+                    ${cat}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <section class="py-14 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                ${filtered.map(act => `
+                  <article class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-card hover:shadow-card-hover transition-all flex flex-col">
+                    <img src="${act.image}" alt="${act.title}" onerror="this.src='https://placehold.co/800x400/EFF6FF/2B3D4F?text=GOODSAN'" class="w-full h-44 object-cover cursor-pointer" onclick="openActivityModal('${act.id}')" />
+                    <div class="p-6 flex-1 flex flex-col">
+                      <div class="flex items-center gap-2 mb-3">
+                        <span class="px-2.5 py-0.5 rounded-full bg-brand-dark text-white text-[11px] font-semibold">${act.category}</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-brand-soft text-brand-blue text-[11px] font-semibold">${act.tag}</span>
+                      </div>
+                      <h2 onclick="openActivityModal('${act.id}')" class="text-base font-bold text-brand-dark hover:text-brand-blue cursor-pointer mb-2">${act.title}</h2>
+                      <p class="text-sm text-brand-muted leading-relaxed mb-4 flex-1">${act.summary}</p>
+                      <div class="text-xs text-brand-muted pb-4 border-b border-brand-border/70">${act.date} • ${act.meta}</div>
+                      <div class="pt-4 flex items-center justify-between text-xs font-semibold">
+                        <button type="button" onclick="openActivityModal('${act.id}')" class="text-brand-blue hover:underline">${act.actionLabel} &rarr;</button>
+                        <button type="button" onclick="shareOnLinkedIn('${act.title.replace(/'/g, '')}')" class="text-brand-muted hover:text-brand-dark">LinkedIn'de paylaş</button>
+                      </div>
+                    </div>
+                  </article>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+        </div>
+      `;
+    }
+
+    function filterActivities(cat) {
+      activeActivityFilter = cat;
+      renderCurrentRoute();
+    }
+
+    function navigateToActivities(category = 'Tümü') {
+      activeActivityFilter = category;
+      navigateTo('aktiviteler');
+    }
+
+    // --- 6. İLETİŞİM ---
+    function renderContactPage() {
+      return `
+        <div class="page-animate">
+          <section class="bg-brand-bg border-b border-brand-border py-14">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">BİZE ULAŞIN</span>
+              <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark mt-2">İletişimde kalalım</h1>
+              <p class="text-brand-muted mt-3 max-w-2xl">
+                Firmanızın mevcut yatırımlarını, Ar-Ge fikirlerini veya yeşil dönüşüm planlarını uzman mühendis ve danışman kadromuzla değerlendirelim. Size en uygun hibe ve teşvik yol haritasını ücretsiz çıkaralım.
+              </p>
+            </div>
+          </section>
+
+          <section class="py-14 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
+              <!-- Sol: Uygunluk Formu -->
+              <div class="lg:col-span-7">
+                <div id="contact-form-wrapper" class="p-6 sm:p-8 rounded-2xl bg-white border border-brand-border shadow-card">
+                  <h2 class="text-xl font-bold text-brand-dark">Ücretsiz Hibe ve Teşvik Uygunluk Formu</h2>
+                  <p class="text-xs text-brand-muted mt-1 mb-6">Yaklaşık 1 dakika • Aksi belirtilmedikçe tüm alanlar zorunludur.</p>
+
+                  <form id="goodsan-contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label class="block text-xs font-semibold text-brand-slate mb-1.5">Ad soyad *</label>
+                        <input type="text" required placeholder="Örn: Ahmet Yılmaz" class="w-full px-4 py-2.5 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-soft" />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-semibold text-brand-slate mb-1.5">Firma unvanı *</label>
+                        <input type="text" required placeholder="Firma Adı A.Ş. / Ltd. Şti." class="w-full px-4 py-2.5 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-soft" />
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label class="block text-xs font-semibold text-brand-slate mb-1.5">Telefon *</label>
+                        <input type="tel" required placeholder="05XX XXX XX XX" class="w-full px-4 py-2.5 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-soft" />
+                        <span class="block text-[11px] text-brand-muted mt-1">Ön analiz için sizi bu numaradan arayacağız.</span>
+                      </div>
+                      <div>
+                        <label class="block text-xs font-semibold text-brand-slate mb-1.5">E-posta *</label>
+                        <input type="email" required placeholder="ornek@firma.com" class="w-full px-4 py-2.5 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-soft" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="block text-xs font-semibold text-brand-slate mb-1.5">İlgilendiğiniz destek alanı (isteğe bağlı)</label>
+                      <select id="contact-service-select" class="w-full px-4 py-2.5 rounded-xl border border-brand-border text-sm bg-white focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-soft">
+                        <option value="">Seçiniz / Emin değilim</option>
+                        ${servicesData.map(s => `<option value="${s.name}" ${preselectedContactService.includes(s.name) ? 'selected' : ''}>${s.name}</option>`).join('')}
+                        ${preselectedContactService && !servicesData.some(s => preselectedContactService.includes(s.name)) ? `<option value="${preselectedContactService}" selected>${preselectedContactService}</option>` : ''}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label class="block text-xs font-semibold text-brand-slate mb-1.5">Proje veya yatırım konunuz (isteğe bağlı)</label>
+                      <textarea rows="4" placeholder="Planladığınız yatırım, ürün geliştirme veya Ar-Ge çalışmasından kısaca bahsedin..." class="w-full px-4 py-2.5 rounded-xl border border-brand-border text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-soft"></textarea>
+                    </div>
+
+                    <label class="flex items-start gap-2.5 text-xs text-brand-muted cursor-pointer pt-1">
+                      <input type="checkbox" required class="mt-0.5 rounded border-brand-border text-brand-blue focus:ring-brand-blue" />
+                      <span><button type="button" onclick="openLegalModal('kvkk')" class="text-brand-blue underline font-medium">KVKK Aydınlatma Metni</button>'ni okudum; kişisel verilerimin başvurumun değerlendirilmesi amacıyla işlenmesini kabul ediyorum.</span>
+                    </label>
+
+                    <button type="submit" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-brand-blue hover:bg-brand-blueHover text-white text-sm font-semibold shadow-sm transition-all">
+                      Ön analiz talebini gönder
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Sağ: İletişim Bilgileri & Süreç -->
+              <div class="lg:col-span-5 space-y-6">
+                <div class="p-6 rounded-2xl bg-brand-bg border border-brand-border space-y-5">
+                  <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Merkez Ofis</span>
+                    <p class="text-sm font-medium text-brand-dark mt-1">Beştepe Mah. Nergiz Sok. No: 7/2 İç Kapı: 32, Söğütözü, 06560 Yenimahalle / Ankara</p>
+                  </div>
+                  <div class="pt-4 border-t border-brand-border">
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Telefon ve WhatsApp</span>
+                    <div class="mt-1.5 flex flex-wrap items-center gap-3">
+                      <a href="tel:+905546597684" class="text-base font-bold text-brand-dark hover:text-brand-blue">+90 554 659 76 84</a>
+                      <a href="https://wa.me/905546597684" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-colors">WhatsApp'tan yaz</a>
+                    </div>
+                  </div>
+                  <div class="pt-4 border-t border-brand-border">
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">E-posta & Web</span>
+                    <div class="mt-1 space-y-1 text-sm">
+                      <div><a href="mailto:sara@goodsanarge.com" class="font-semibold text-brand-blue hover:underline">sara@goodsanarge.com</a></div>
+                      <div><a href="https://www.goodsanarge.com" target="_blank" rel="noopener noreferrer" class="text-brand-slate hover:text-brand-blue">www.goodsanarge.com</a></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sonra Ne Olacak? -->
+                <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-card">
+                  <h3 class="text-base font-bold text-brand-dark mb-4">Sonra ne olacak?</h3>
+                  <ol class="space-y-4">
+                    <li class="flex items-start gap-3">
+                      <span class="w-6 h-6 rounded-full bg-brand-soft text-brand-blue text-xs font-bold flex items-center justify-center shrink-0">1</span>
+                      <span class="text-sm text-brand-slate"><strong>1 iş günü içinde</strong> sizi arıyoruz ve uygun görüşme saatini netleştiriyoruz.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="w-6 h-6 rounded-full bg-brand-soft text-brand-blue text-xs font-bold flex items-center justify-center shrink-0">2</span>
+                      <span class="text-sm text-brand-slate"><strong>30 dakikalık ön analiz görüşmesi</strong> ile projenizi ve hedeflerinizi dinliyoruz.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <span class="w-6 h-6 rounded-full bg-brand-soft text-brand-blue text-xs font-bold flex items-center justify-center shrink-0">3</span>
+                      <span class="text-sm text-brand-slate"><strong>Uygun programlar ve yol haritası</strong> özetini e-posta ile paylaşıyoruz.</span>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SSS: GOODSAN İLE ÇALIŞMAK -->
+          <section id="sss" class="scroll-mt-24 py-16 bg-brand-bg border-t border-brand-border">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <span class="text-xs font-bold tracking-wider uppercase text-brand-blue">SIK SORULAN SORULAR</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark mt-2 mb-8">GOODSAN ile çalışmak</h2>
+              <div class="space-y-3">
+                ${generalFaqs.map(f => renderAccordionItem(f.q, f.a)).join('')}
+              </div>
+            </div>
+          </section>
+        </div>
+      `;
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const wrapper = document.getElementById('contact-form-wrapper');
+      wrapper.innerHTML = `
+        <div class="py-10 text-center space-y-4">
+          <div class="w-14 h-14 rounded-2xl bg-brand-soft text-brand-blue flex items-center justify-center mx-auto">
+            <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-dark">Ön Analiz Talebiniz Alındı</h3>
+          <p class="text-sm text-brand-muted max-w-md mx-auto leading-relaxed">
+            Teşekkür ederiz. Talebiniz <strong>GOODSAN</strong> danışmanlık ekibine iletildi. En geç <strong>1 iş günü içinde</strong> telefon veya e-posta üzerinden sizinle iletişime geçeceğiz.
+          </p>
+          <div class="pt-3">
+            <button type="button" onclick="navigateTo('anasayfa')" class="px-6 py-2.5 rounded-xl bg-brand-slate hover:bg-brand-dark text-white text-sm font-semibold transition-colors">
+              Anasayfaya Dön
+            </button>
+          </div>
+        </div>
+      `;
+      showToast('Ön analiz talebiniz başarıyla gönderildi.');
+    }
+
+    /* -----------------------------------------------------------
+       10. ORTAK BİLEŞENLER (AKORDEON & CTA BANNER)
+    ------------------------------------------------------------ */
+    function renderAccordionItem(q, a) {
+      return `
+        <div class="accordion-item bg-white rounded-xl border border-brand-border overflow-hidden">
+          <button type="button" onclick="toggleAccordion(this)" class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-semibold text-sm text-brand-dark hover:bg-brand-bg/50 transition-colors">
+            <span>${q}</span>
+            <svg class="accordion-chevron w-4 h-4 text-brand-muted shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <div class="px-5 pb-4 text-sm text-brand-muted leading-relaxed border-t border-brand-border/50 pt-3">${a}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderBottomCtaBanner(title) {
+      return `
+        <section class="bg-brand-slate text-white py-16">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div class="max-w-2xl">
+              <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">${title}</h2>
+              <p class="text-slate-300 mt-2.5 text-sm sm:text-base leading-relaxed">
+                Yatırımınızı, Ar-Ge fikrinizi veya yeşil dönüşüm planınızı değerlendirelim; size en uygun hibe ve teşvik yol haritasını ücretsiz çıkaralım.
+              </p>
+            </div>
+            <button type="button" onclick="navigateTo('iletisim')"
+                    class="shrink-0 px-7 py-3.5 rounded-xl bg-brand-blue hover:bg-brand-blueHover text-white text-sm font-semibold shadow-md transition-all">
+              Ücretsiz Ön Analiz &rarr;
+            </button>
+          </div>
+        </section>
+      `;
+    }
+
+    /* -----------------------------------------------------------
+       11. SPA YÖNLENDİRME VE BAŞLATMA
+    ------------------------------------------------------------ */
+    let lenisInstance = null;
+
+    function initSmoothScroll() {
+      if (typeof Lenis !== 'undefined') {
+        lenisInstance = new Lenis({
+          duration: 1.35,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 0.85,
+          touchMultiplier: 1.6,
+          lerp: 0.075,
+          autoRaf: true,
+        });
+        lenisInstance.on('scroll', updateHeaderAppearance);
+      } else {
+        document.documentElement.classList.add('scroll-smooth');
+      }
+    }
+
+    function navigateTo(route, anchorId = null, serviceSlug = null) {
+      currentRoute = route;
+      if (serviceSlug) currentServiceSlug = serviceSlug;
+      renderCurrentRoute();
+
+      if (anchorId) {
+        setTimeout(() => {
+          const el = document.getElementById(anchorId);
+          if (el) {
+            if (lenisInstance) {
+              lenisInstance.scrollTo(el, { offset: -115, duration: 1.25 });
+            } else {
+              el.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }, 80);
+      } else {
+        if (lenisInstance) {
+          lenisInstance.scrollTo(0, { duration: 1.0 });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+    }
+
+    let lastHeaderTheme = null;
+
+    function getHeaderMode() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
+      if (mobileOpen) return 'solid-top';
+      if (window.scrollY >= 40) return 'floating';
+      return currentRoute === 'anasayfa' ? 'hero-top' : 'solid-top';
+    }
+
+    function updateHeaderAppearance() {
+      const header = document.getElementById('site-header');
+      const shell = document.getElementById('header-shell');
+      const inner = document.getElementById('header-inner');
+      const row = document.getElementById('header-row');
+      const logoBox = document.getElementById('navbar-logo-container');
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const ctaBtn = document.getElementById('header-cta-btn');
+      if (!header || !shell || !inner || !row) return;
+
+      const mode = getHeaderMode();
+
+      if (mode === 'floating') {
+        header.className = 'fixed top-0 left-0 right-0 z-50 pointer-events-none pt-3.5 px-4 sm:px-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]';
+        shell.className = 'pointer-events-auto mx-auto w-full max-w-6xl rounded-2xl bg-[#2B3D4F]/80 backdrop-blur-xl border border-white/20 shadow-[0_18px_45px_-12px_rgba(15,23,42,0.34)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]';
+        inner.className = 'w-full px-5 sm:px-7 transition-all duration-500';
+        row.className = 'flex items-center justify-between h-[76px] transition-all duration-500';
+        if (mobileBtn) {
+          mobileBtn.className = 'lg:hidden p-2.5 rounded-xl border border-white/30 text-white hover:bg-white/15 transition-colors';
+        }
+        if (ctaBtn) {
+          ctaBtn.className = 'hidden sm:inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-brand-blue hover:bg-brand-blueHover text-white text-[15px] font-semibold shadow-md transition-all duration-200';
+        }
+      } else if (mode === 'hero-top') {
+        header.className = 'fixed top-0 left-0 right-0 z-50 pointer-events-none pt-0 px-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]';
+        shell.className = 'pointer-events-auto mx-auto w-full max-w-full rounded-none header-multiply-bar border-b border-white/10 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]';
+        inner.className = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500';
+        row.className = 'flex items-center justify-between h-24 transition-all duration-500';
+        if (mobileBtn) {
+          mobileBtn.className = 'lg:hidden p-2.5 rounded-xl border border-white/30 text-white hover:bg-white/10 transition-colors';
+        }
+        if (ctaBtn) {
+          ctaBtn.className = 'hidden sm:inline-flex items-center gap-2.5 px-5 py-2.5 rounded-lg border border-white/35 bg-white/10 hover:bg-white hover:text-[#12263A] text-white text-[15px] font-semibold backdrop-blur-sm transition-all duration-200';
+        }
+      } else {
+        header.className = 'fixed top-0 left-0 right-0 z-50 pointer-events-none pt-0 px-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]';
+        shell.className = 'pointer-events-auto mx-auto w-full max-w-full rounded-none bg-white/95 backdrop-blur-md border-b border-brand-border/80 shadow-sm transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]';
+        inner.className = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500';
+        row.className = 'flex items-center justify-between h-24 transition-all duration-500';
+        if (mobileBtn) {
+          mobileBtn.className = 'lg:hidden p-2.5 rounded-xl border border-brand-border text-brand-slate hover:bg-brand-bg transition-colors';
+        }
+        if (ctaBtn) {
+          ctaBtn.className = 'hidden sm:inline-flex items-center gap-2.5 px-5 py-2.5 rounded-lg bg-[#12263A] hover:bg-brand-blue text-white text-[15px] font-semibold shadow-sm transition-all duration-200';
+        }
+      }
+
+      if (lastHeaderTheme !== mode && logoBox) {
+        if (mode === 'floating') {
+          logoBox.innerHTML = getGoodsanLogo('light', 'floating');
+        } else if (mode === 'hero-top') {
+          logoBox.innerHTML = getGoodsanLogo('light', 'navbar');
+        } else {
+          logoBox.innerHTML = getGoodsanLogo('dark', 'navbar');
+        }
+        lastHeaderTheme = mode;
+      }
+
+      updateActiveNavStyles(mode);
+    }
+
+    function updateActiveNavStyles(mode = getHeaderMode()) {
+      const isDarkSurface = mode === 'hero-top' || mode === 'floating';
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const key = link.getAttribute('data-nav');
+        const isActive = key === currentRoute || (key === 'hizmetlerimiz' && currentRoute === 'hizmet-detay');
+
+        link.classList.remove(
+          'text-brand-blue', 'bg-brand-soft/80', 'font-bold', 'text-brand-slate',
+          'hover:text-brand-blue', 'hover:bg-brand-bg',
+          'text-white', 'text-white/90', 'text-white/95', 'hover:text-white',
+          'hover:bg-white/10', 'bg-white/10', 'bg-white/15'
+        );
+
+        if (isDarkSurface) {
+          if (isActive) {
+            link.classList.add('text-white', 'font-bold', mode === 'floating' ? 'bg-white/15' : 'bg-white/10');
+          } else {
+            link.classList.add('text-white/95', 'hover:text-white', 'hover:bg-white/10');
+          }
+        } else {
+          if (isActive) {
+            link.classList.add('text-brand-blue', 'bg-brand-soft/80', 'font-bold');
+          } else {
+            link.classList.add('text-brand-slate', 'hover:text-brand-blue', 'hover:bg-brand-bg');
+          }
+        }
+      });
+    }
+
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    function renderCurrentRoute() {
+      const root = document.getElementById('app-root');
+      if (currentRoute === 'anasayfa') {
+        root.classList.remove('pt-24');
+        root.innerHTML = renderHomePage();
+      } else {
+        root.classList.add('pt-24');
+        if (currentRoute === 'hizmetlerimiz') root.innerHTML = renderServicesPage();
+        else if (currentRoute === 'hizmet-detay') root.innerHTML = renderServiceDetailPage(currentServiceSlug);
+        else if (currentRoute === 'hakkimizda') root.innerHTML = renderAboutPage();
+        else if (currentRoute === 'aktiviteler') root.innerHTML = renderActivitiesPage();
+        else if (currentRoute === 'iletisim') root.innerHTML = renderContactPage();
+        else root.innerHTML = renderHomePage();
+      }
+
+      updateHeaderAppearance();
+      initScrollReveal();
+      if (currentRoute === 'anasayfa') startActiveCallsTicker();
+      else stopActiveCallsTicker();
+      if (lenisInstance) requestAnimationFrame(() => lenisInstance.resize());
+    }
+
+    function initApp() {
+      // Logoları yerleştir
+      document.getElementById('footer-logo-container').innerHTML = getGoodsanLogo('light', 'footer');
+      initSmoothScroll();
+      window.addEventListener('scroll', updateHeaderAppearance, { passive: true });
+
+      // Masaüstü Dropdown, Mobil Menü ve Footer Hizmet Linklerini Doldur
+      document.getElementById('desktop-services-dropdown').innerHTML = servicesData.map(s => `
+        <a href="#hizmet-${s.slug}" onclick="navigateTo('hizmet-detay', null, '${s.slug}'); return false;"
+           class="flex items-center gap-2.5 px-3.5 py-2 rounded-xl text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg transition-colors">
+          <span class="text-[11px] font-bold text-brand-blue/70">${s.num}</span>
+          <span>${s.name}</span>
+        </a>
+      `).join('');
+
+      document.getElementById('mobile-services-links').innerHTML = servicesData.map(s => `
+        <a href="#hizmet-${s.slug}" onclick="navigateTo('hizmet-detay', null, '${s.slug}'); closeMobileMenu(); return false;"
+           class="block px-3 py-2 rounded-lg text-sm text-brand-slate hover:text-brand-blue hover:bg-brand-bg">
+          ${s.num}. ${s.name}
+        </a>
+      `).join('');
+
+      document.getElementById('footer-services-list').innerHTML = servicesData.map(s => `
+        <li>
+          <a href="#hizmet-${s.slug}" onclick="navigateTo('hizmet-detay', null, '${s.slug}'); return false;" class="hover:text-white transition-colors">
+            ${s.name}
+          </a>
+        </li>
+      `).join('');
+
+      // Modal dışına tıklayınca kapat
+      document.getElementById('global-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'global-modal') closeModal();
+      });
+
+      renderCurrentRoute();
+    }
+
+    window.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
